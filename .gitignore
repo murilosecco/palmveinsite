@@ -1,0 +1,26 @@
+.DS_Store
+Thumbs.db
+.vercel
+node_modules
+dist
+build
+*.log
+palmvein-site.html
+_imagens/todos slides/
+assets/
+_imagens/*
+!_imagens/Avatar_Rodrigo.png
+!_imagens/Casal_Piscina.jpg
+!_imagens/Casal_Piscina.png
+!_imagens/Entrada_Escritorio.png
+!_imagens/Fundo_Final.png
+!_imagens/Homem_Hotel.png
+!_imagens/Lojadeternos.png
+!_imagens/Rodrigo_Founder.jpeg
+!_imagens/Wavepass_500_Palmvein.png
+!_imagens/hands_Blue.png
+!_imagens/magnific__quero-que-complete-essa-imnagem-img2-tirando-essa-__87176.png
+!_imagens/Dispositivos/
+_imagens/Dispositivos/*
+!_imagens/Dispositivos/Palmvein_01.png
+!_imagens/Dispositivos/Wavepass.png

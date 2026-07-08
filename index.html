@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PalmVein — Você é o seu token</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<style>
+:root{
+  --vein:#F5F5F0;        /* fundo claro */
+  --vein-pure:#FFFDF8;   /* off-white puro */
+  --haze:#C7C7C7;        /* cinza neutro */
+  --haze-2:#EBEAE9;      /* cinza claro superfície */
+  --flow:#2A89FB;        /* azul elétrico */
+  --origin:#112860;      /* navy */
+  --origin-deep:#0C1D45; /* navy mais fundo */
+  --palm:#56EF9E;        /* mint — só contato */
+  --ink:#0A1533;         /* texto sobre claro */
+  --muted:#5F6B84;       /* texto secundário */
+  --line:rgba(17,40,96,0.10);
+  --line-dark:rgba(255,255,255,0.12);
+  --font-display:'Space Grotesk',system-ui,sans-serif;
+  --font-body:'DM Sans',system-ui,sans-serif;
+  --r-sm:12px; --r-md:18px; --r-lg:26px; --r-full:980px;
+  --mw:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  background:var(--vein);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(circle at 14% 18%,rgba(42,137,251,.10),transparent 28%),
+    radial-gradient(circle at 86% 72%,rgba(86,239,158,.10),transparent 26%);
+}
+h1,h2,h3,h4,.display{font-family:var(--font-display);letter-spacing:-.03em;line-height:1.05}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--mw);margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+.eyebrow{
+  font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--flow);margin-bottom:18px;display:flex;align-items:center;gap:8px;
+}
+.eyebrow::before{content:"";width:24px;height:2px;background:var(--flow);display:inline-block}
+.muted{color:var(--muted)}
+
+/* ---------- HEADER ---------- */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(245,245,240,.82);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+  transition:background .3s;
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center}
+.pv-logo{height:26px;width:auto;display:block}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:14px;font-weight:500;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--origin)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.lang{position:relative}
+.lang-btn{
+  display:flex;align-items:center;gap:6px;font-family:var(--font-body);
+  background:var(--vein-pure);border:1px solid var(--line);color:var(--origin);
+  padding:8px 12px;border-radius:var(--r-full);font-size:13px;font-weight:600;cursor:pointer;
+  transition:border-color .2s;
+}
+.lang-btn:hover{border-color:var(--flow)}
+.lang-menu{
+  position:absolute;top:calc(100% + 8px);right:0;background:var(--vein-pure);
+  border:1px solid var(--line);border-radius:var(--r-sm);padding:6px;min-width:150px;
+  box-shadow:0 12px 40px rgba(17,40,96,.14);display:none;
+}
+.lang-menu.open{display:block}
+.lang-menu button{
+  display:flex;align-items:center;gap:10px;width:100%;background:none;border:none;
+  font-family:var(--font-body);font-size:14px;color:var(--ink);padding:9px 10px;
+  border-radius:8px;cursor:pointer;text-align:left;
+}
+.lang-menu button:hover{background:var(--haze-2)}
+.lang-menu button.active{color:var(--flow);font-weight:600}
+.flag{font-size:16px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--font-body);font-weight:600;
+  font-size:14px;padding:12px 22px;border-radius:var(--r-full);cursor:pointer;border:none;
+  transition:transform .18s,background .2s,box-shadow .2s;white-space:nowrap;
+}
+button:focus-visible,a:focus-visible{outline:2px solid var(--palm);outline-offset:3px}
+.btn-primary{background:var(--flow);color:#fff;box-shadow:0 4px 18px rgba(42,137,251,.32)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(42,137,251,.42)}
+.btn-dark{background:var(--origin);color:#fff}
+.btn-dark:hover{transform:translateY(-2px);background:var(--origin-deep)}
+.btn-ghost{background:transparent;color:var(--origin);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--flow);color:var(--flow)}
+.btn-light{background:#fff;color:var(--origin)}
+.btn-light:hover{transform:translateY(-2px)}
+.burger{display:none;background:none;border:none;font-size:26px;color:var(--origin);cursor:pointer}
+
+/* ---------- HERO ---------- */
+.hero{padding:150px 0 90px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(40px,6.5vw,74px);color:var(--origin);margin-bottom:24px}
+.hero h1 .accent{color:var(--flow)}
+.hero-sub{font-size:19px;color:var(--muted);max-width:460px;margin-bottom:34px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-visual{
+  position:relative;aspect-ratio:4/5;border-radius:var(--r-lg);overflow:hidden;
+  background:linear-gradient(160deg,var(--origin) 0%,var(--origin-deep) 100%);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 30px 80px rgba(17,40,96,.28);
+  transform-style:preserve-3d;
+}
+.hero-visual .glow{position:absolute;inset:0;z-index:2;background:radial-gradient(circle at 70% 30%,rgba(42,137,251,.32),transparent 55%)}
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.08) contrast(1.04)}
+.hero-visual::before{
+  content:"";position:absolute;inset:0;z-index:2;
+  background:linear-gradient(180deg,rgba(12,29,69,.05),rgba(12,29,69,.42));
+}
+.hero-visual::after{
+  content:"";position:absolute;inset:0;z-index:2;opacity:.36;mix-blend-mode:screen;
+  background:
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:34px 34px;
+  animation:gridDrift 14s linear infinite;
+}
+.scan-line{
+  position:absolute;left:9%;right:9%;height:3px;border-radius:2px;z-index:4;
+  background:linear-gradient(90deg,transparent,var(--palm),transparent);
+  box-shadow:0 0 16px var(--palm);animation:scan 3s ease-in-out infinite;
+}
+@keyframes scan{0%,100%{top:32%;opacity:.4}50%{top:64%;opacity:1}}
+@keyframes gridDrift{from{background-position:0 0,0 0}to{background-position:34px 34px,34px 34px}}
+.hero-tag{position:absolute;bottom:22px;left:22px;z-index:5;background:rgba(86,239,158,.16);backdrop-filter:blur(14px);border:1px solid rgba(86,239,158,.4);color:var(--palm);padding:7px 14px;border-radius:var(--r-full);font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px}
+.trust-strip{display:flex;gap:28px;flex-wrap:wrap;margin-top:40px;padding-top:28px;border-top:1px solid var(--line)}
+.trust-item{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--muted)}
+.trust-item i{color:var(--flow);font-size:19px}
+
+/* ---------- PROBLEM ---------- */
+.problem{background:var(--origin);color:#fff;border-radius:0;position:relative;overflow:hidden}
+.problem::after{
+  content:"";position:absolute;inset:0;opacity:.20;pointer-events:none;
+  background:linear-gradient(90deg,var(--origin) 0%,rgba(17,40,96,.38) 48%,var(--origin) 100%),url("_imagens/hands_Blue.png") right center/auto 100% no-repeat;
+}
+.problem .wrap{position:relative;z-index:2}
+.problem h2{font-size:clamp(30px,4.5vw,48px);max-width:820px;margin-bottom:20px}
+.problem .lead{font-size:18px;color:rgba(255,255,255,.68);max-width:640px}
+.problem .eyebrow{color:var(--palm)}
+.problem .eyebrow::before{background:var(--palm)}
+.prob-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+.prob-card{background:rgba(255,255,255,.05);border:1px solid var(--line-dark);border-radius:var(--r-md);padding:28px}
+.prob-card i{font-size:32px;color:var(--flow);margin-bottom:14px;display:block}
+.prob-card h4{font-size:19px;margin-bottom:8px}
+.prob-card p{font-size:14px;color:rgba(255,255,255,.6)}
+
+/* ---------- HOW ---------- */
+.how .eyebrow{justify-content:center}
+.how-head{text-align:center;max-width:620px;margin:0 auto 60px}
+.how h2{font-size:clamp(30px,4.5vw,46px);color:var(--origin);margin-bottom:16px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
+.step{background:var(--vein-pure);border:1px solid var(--line);border-radius:var(--r-md);padding:30px 24px;position:relative;transition:transform .25s,box-shadow .25s}
+.step:hover{transform:translateY(-6px);box-shadow:0 20px 44px rgba(17,40,96,.10)}
+.step .num{font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--flow);letter-spacing:.1em;margin-bottom:20px;display:block}
+.step i{font-size:34px;color:var(--origin);margin-bottom:16px;display:block}
+.step.final i{color:var(--palm)}
+.step h4{font-size:18px;color:var(--origin);margin-bottom:8px}
+.step p{font-size:14px;color:var(--muted)}
+.step .metric{margin-top:14px;font-family:var(--font-display);font-weight:600;font-size:13px;color:var(--flow)}
+.step.final .metric{color:#2bbf7a}
+
+/* ---------- DIFFERENTIALS ---------- */
+.diff{background:var(--vein-pure)}
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:52px}
+.diff-card{display:flex;gap:20px;padding:30px;background:var(--vein);border:1px solid var(--line);border-radius:var(--r-md);transition:border-color .25s}
+.diff-card:hover{border-color:var(--flow)}
+.diff-icon{flex-shrink:0;width:54px;height:54px;border-radius:14px;background:rgba(42,137,251,.1);display:flex;align-items:center;justify-content:center}
+.diff-icon i{font-size:28px;color:var(--flow)}
+.diff-card h4{font-size:19px;color:var(--origin);margin-bottom:7px}
+.diff-card p{font-size:14px;color:var(--muted)}
+
+/* ---------- DEVICES ---------- */
+.devices .how-head{margin-bottom:52px}
+.devices h2{font-size:clamp(30px,4.5vw,46px);color:var(--origin)}
+.dev-tabs{display:flex;gap:10px;justify-content:center;margin-bottom:44px;flex-wrap:wrap}
+.dev-tab{background:var(--vein-pure);border:1.5px solid var(--line);color:var(--muted);padding:11px 22px;border-radius:var(--r-full);font-family:var(--font-body);font-weight:600;font-size:14px;cursor:pointer;transition:all .2s}
+.dev-tab.active{background:var(--origin);border-color:var(--origin);color:#fff}
+.dev-panel{display:none}
+.dev-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;animation:fade .4s ease}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.dev-visual{aspect-ratio:1/1;border-radius:var(--r-lg);background:linear-gradient(155deg,var(--origin),var(--origin-deep));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 24px 60px rgba(17,40,96,.24);transform-style:preserve-3d}
+.dev-visual .glow{position:absolute;inset:0;z-index:2;background:radial-gradient(circle at 50% 40%,rgba(42,137,251,.25),transparent 60%)}
+.dev-visual::after{
+  content:"";position:absolute;inset:0;z-index:2;
+  background:linear-gradient(180deg,transparent,rgba(12,29,69,.24));
+}
+.dev-visual.vivid::after{background:linear-gradient(180deg,transparent 58%,rgba(12,29,69,.10))}
+.dev-visual.vivid .glow{opacity:.45}
+.dev-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.dev-panel.active .dev-visual img{transform:scale(1.035)}
+.dev-badge{position:absolute;top:20px;left:20px;z-index:3;background:rgba(86,239,158,.16);border:1px solid rgba(86,239,158,.4);color:var(--palm);padding:6px 13px;border-radius:var(--r-full);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.dev-info .eyebrow{color:var(--flow)}
+.dev-info h3{font-size:32px;color:var(--origin);margin-bottom:14px}
+.dev-info>p{font-size:16px;color:var(--muted);margin-bottom:24px}
+.dev-specs{list-style:none;display:grid;gap:13px}
+.dev-specs li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px}
+.dev-specs i{color:var(--palm);font-size:20px;flex-shrink:0;margin-top:1px}
+.dev-specs b{color:var(--origin);font-weight:600}
+
+/* ---------- SECTORS ---------- */
+.sectors{background:var(--origin);color:#fff}
+.sectors .eyebrow{color:var(--palm)}
+.sectors .eyebrow::before{background:var(--palm)}
+.sectors h2{font-size:clamp(30px,4.5vw,46px);margin-bottom:16px}
+.sectors .how-head p{color:rgba(255,255,255,.62)}
+.sector-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+.sector{background:rgba(255,255,255,.05);border:1px solid var(--line-dark);border-radius:var(--r-md);padding:26px 22px;cursor:pointer;transition:background .25s,transform .25s}
+.sector:hover{background:rgba(42,137,251,.14);transform:translateY(-5px)}
+.sector i{font-size:32px;color:var(--flow);margin-bottom:14px;display:block}
+.sector h4{font-size:17px;margin-bottom:6px}
+.sector p{font-size:13px;color:rgba(255,255,255,.58)}
+
+.experience{background:var(--vein-pure);color:var(--ink);overflow:hidden;padding:92px 0}
+.experience-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:34px}
+.experience h2{font-size:clamp(34px,4.8vw,56px);max-width:720px;color:var(--origin)}
+.experience .eyebrow{color:var(--flow);margin-bottom:16px}
+.experience .eyebrow::before{background:var(--flow)}
+.experience-sub{max-width:440px;color:var(--muted);font-size:16px}
+.story-controls{display:flex;gap:10px;flex-shrink:0}
+.story-btn{
+  width:42px;height:42px;border-radius:50%;border:1px solid var(--line);
+  background:var(--vein);color:var(--origin);display:inline-flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .2s,transform .2s;
+}
+.story-btn:hover{background:var(--flow);color:#fff;transform:translateY(-2px)}
+.story-btn i{font-size:20px}
+.story-track{
+  display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  padding:0 max(24px,calc((100vw - var(--mw))/2 + 24px)) 8px;
+  scrollbar-width:none;
+}
+.story-track::-webkit-scrollbar{display:none}
+.story-card{
+  flex:0 0 min(86vw,1040px);scroll-snap-align:center;background:#fff;border:1px solid var(--line);
+  border-radius:28px;display:grid;grid-template-columns:1.08fr .92fr;overflow:hidden;
+  box-shadow:0 24px 70px rgba(17,40,96,.11);min-height:430px;
+}
+.story-media{
+  position:relative;min-height:430px;overflow:hidden;background:#101827;
+}
+.story-media img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.story-card:hover .story-media img{transform:scale(1.035)}
+.story-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 70%,rgba(255,255,255,.18))}
+.story-copy{padding:48px 44px;display:flex;flex-direction:column;justify-content:center}
+.story-kicker{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--flow);margin-bottom:18px}
+.story-copy h3{font-size:clamp(28px,3.3vw,44px);color:var(--origin);margin-bottom:18px;line-height:1.04}
+.story-copy p{font-size:17px;color:var(--muted);line-height:1.55;margin-bottom:28px}
+.story-chip{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:rgba(86,239,158,.16);color:#238e61;border:1px solid rgba(86,239,158,.36);padding:9px 14px;border-radius:var(--r-full);font-size:13px;font-weight:700}
+
+/* ---------- AUDIENCE SPLIT ---------- */
+.split-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:20px}
+.split-card{border-radius:var(--r-lg);padding:44px 38px;position:relative;overflow:hidden}
+.split-card::after{content:"";position:absolute;inset:auto 0 0 0;height:42%;opacity:.16;pointer-events:none;background-size:cover;background-position:center}
+.split-b2b{background:var(--vein-pure);border:1px solid var(--line)}
+.split-b2c{background:linear-gradient(155deg,var(--flow),#1a6fd4);color:#fff}
+.split-b2b::after{background-image:url("_imagens/Entrada_Escritorio.png")}
+.split-b2c::after{background-image:url("_imagens/Casal_Piscina.png");opacity:.20}
+.split-card>*{position:relative;z-index:2}
+.split-card .tag{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;display:block}
+.split-b2b .tag{color:var(--flow)}
+.split-b2c .tag{color:rgba(255,255,255,.8)}
+.split-card h3{font-size:28px;margin-bottom:14px}
+.split-b2b h3{color:var(--origin)}
+.split-card p{font-size:15px;margin-bottom:26px}
+.split-b2b p{color:var(--muted)}
+.split-b2c p{color:rgba(255,255,255,.85)}
+
+/* ---------- VERTICAL PRODUCT SLIDER ---------- */
+.vertical-slider{background:#050914;color:#fff;padding:0;position:relative;overflow:visible}
+.vslide-grid{display:grid;grid-template-columns:.86fr 1.14fr;gap:52px;align-items:start}
+.vslide-copy{padding:24vh 0;display:grid;gap:18vh}
+.vslide-panel{min-height:58vh;display:flex;flex-direction:column;justify-content:center;opacity:.34;transition:opacity .35s,transform .35s}
+.vslide-panel.active{opacity:1;transform:translateX(0)}
+.vslide-panel:not(.active){transform:translateX(-10px)}
+.vslide-kicker{
+  display:inline-flex;align-items:center;align-self:flex-start;background:var(--flow);color:var(--origin);
+  padding:5px 13px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;
+}
+.vslide-panel h2{font-size:clamp(38px,4.8vw,64px);line-height:.98;color:#fff;max-width:520px;margin-bottom:26px}
+.vslide-panel h2 span{color:var(--flow)}
+.vslide-panel p{font-size:clamp(18px,2vw,28px);line-height:1.25;color:rgba(255,255,255,.88);max-width:500px}
+.vslide-visual{position:sticky;top:90px;height:calc(100vh - 110px);display:flex;align-items:center;justify-content:center}
+.vslide-visual::before{
+  content:"";position:absolute;inset:12% -6% 2% 6%;border-radius:50%;
+  background:radial-gradient(circle,rgba(42,137,251,.34),transparent 62%);filter:blur(18px);
+}
+.vslide-visual img{position:relative;z-index:2;width:min(620px,90%);max-height:72vh;object-fit:contain;filter:drop-shadow(0 32px 90px rgba(42,137,251,.32))}
+.vslide-dots{position:absolute;right:18px;top:50%;transform:translateY(-50%);display:grid;gap:14px;z-index:4}
+.vslide-dot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.52);transition:height .25s,background .25s}
+.vslide-dot.active{height:64px;background:var(--palm)}
+
+/* ---------- FUTURE BANNER ---------- */
+.future-banner{
+  min-height:78vh;padding:0;position:relative;overflow:hidden;color:#fff;
+  display:flex;align-items:flex-end;background:var(--origin-deep);
+}
+.future-bg{
+  position:absolute;inset:-12% 0;z-index:0;
+  background-image:url("_imagens/Entrada_Escritorio.png");
+  background-size:cover;background-position:center;
+  transform:translate3d(0,var(--parallax-y,0px),0) scale(1.06);
+  will-change:transform;
+}
+.future-banner::after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(90deg,rgba(12,29,69,.80) 0%,rgba(12,29,69,.42) 42%,rgba(12,29,69,.08) 100%),
+    linear-gradient(180deg,rgba(12,29,69,.04) 25%,rgba(12,29,69,.66) 100%);
+}
+.future-content{position:relative;z-index:2;width:100%;padding:0 0 82px}
+.future-kicker{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:220px;height:34px;padding:0 22px;margin-bottom:26px;border-radius:8px;
+  background:rgba(17,40,96,.58);border:1px solid rgba(86,239,158,.22);
+  color:var(--palm);font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+  backdrop-filter:blur(14px);
+}
+.future-banner h2{
+  max-width:720px;font-size:clamp(44px,7vw,92px);line-height:.96;color:#fff;margin-bottom:0;
+  text-shadow:0 18px 60px rgba(0,0,0,.34);
+}
+.future-banner h2 span{color:var(--palm)}
+
+/* ---------- MARKET ---------- */
+.market{background:var(--vein-pure)}
+.market .how-head{margin-bottom:50px}
+.market h2{font-size:clamp(28px,4vw,42px);color:var(--origin)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.stat{background:var(--vein);border:1px solid var(--line);border-radius:var(--r-md);padding:30px 26px;text-align:center}
+.stat .big{font-family:var(--font-display);font-weight:700;font-size:38px;color:var(--flow);line-height:1;margin-bottom:10px}
+.stat p{font-size:13px;color:var(--muted)}
+.stat .src{font-size:11px;color:var(--haze);margin-top:8px;font-style:italic}
+
+/* ---------- CTA FINAL ---------- */
+.cta-final{text-align:center}
+.cta-box{background:linear-gradient(155deg,rgba(17,40,96,.88),rgba(12,29,69,.94)),url("_imagens/Fundo_Final.png") center/cover;border-radius:var(--r-lg);padding:76px 40px;position:relative;overflow:hidden}
+.cta-box .glow{position:absolute;top:-60px;right:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(86,239,158,.2),transparent 70%)}
+.cta-box h2{font-size:clamp(30px,4.5vw,52px);color:#fff;margin-bottom:16px;position:relative;z-index:2}
+.cta-box p{font-size:17px;color:rgba(255,255,255,.7);max-width:520px;margin:0 auto 34px;position:relative;z-index:2}
+.cta-box .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:2}
+
+/* ---------- FOUNDER ---------- */
+.founder-strip{background:var(--vein-pure);padding:64px 0;border-top:1px solid var(--line)}
+.founder-card{
+  width:100%;display:flex;align-items:center;gap:28px;background:transparent;border:none;
+  color:var(--origin);text-align:left;cursor:pointer;padding:0;max-width:920px;margin:0 auto;
+}
+.founder-avatar{width:126px;height:126px;border-radius:50%;border:5px solid var(--palm);object-fit:cover;box-shadow:0 18px 48px rgba(17,40,96,.14);flex-shrink:0}
+.founder-name{display:block;font-family:var(--font-display);font-weight:700;font-size:clamp(34px,5vw,62px);color:var(--origin);margin-bottom:6px;line-height:1.05}
+.founder-role{display:block;font-size:clamp(16px,2vw,24px);letter-spacing:.03em;text-transform:uppercase;color:var(--origin)}
+.founder-card .founder-link{display:inline-flex;align-items:center;gap:8px;margin-top:14px;color:var(--flow);font-weight:800;font-size:14px}
+.founder-modal{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;padding:28px;background:rgba(4,9,24,.72);backdrop-filter:blur(18px)}
+.founder-modal.open{display:flex}
+.founder-dialog{
+  position:relative;max-width:1120px;max-height:min(86vh,820px);overflow:auto;background:var(--vein-pure);
+  border-radius:24px;padding:34px;box-shadow:0 30px 100px rgba(0,0,0,.32);
+  display:grid;grid-template-columns:.82fr 1.18fr;gap:44px;color:var(--origin);
+}
+.founder-close{
+  position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
+  background:#fff;color:var(--origin);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;
+}
+.founder-photo img{width:100%;height:auto;border-radius:18px}
+.founder-photo h3{font-size:30px;color:var(--origin);margin-bottom:2px}
+.founder-photo p{font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--origin);margin-bottom:18px}
+.founder-social{display:flex;align-items:center;gap:10px;margin-top:22px;font-size:22px;color:var(--origin)}
+.founder-social i{color:var(--flow);font-size:26px}
+.founder-bio h2{font-size:clamp(34px,4vw,58px);color:var(--origin);margin:24px 0 26px;line-height:1.02}
+.founder-bio p{font-size:clamp(18px,2vw,25px);line-height:1.28;color:var(--origin);margin-bottom:26px}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--vein);border-top:1px solid var(--line);padding:60px 0 40px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:44px}
+.foot-brand .brand{margin-bottom:18px}
+.pv-logo-foot{height:30px}
+.foot-brand p{font-size:14px;color:var(--muted);max-width:280px}
+.foot-col h5{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--origin);margin-bottom:16px}
+.foot-col a{display:block;font-size:14px;color:var(--muted);margin-bottom:10px;transition:color .2s}
+.foot-col a:hover{color:var(--flow)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);flex-wrap:wrap;gap:12px}
+.verbal-nail{font-family:var(--font-display);font-weight:600;color:var(--origin)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ---------- MOBILE ---------- */
+.mobile-menu{display:none}
+@media(max-width:960px){
+  section{padding:70px 0}
+  .nav-links{display:none}
+  .burger{display:block}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-visual{max-width:400px;margin:0 auto;width:100%}
+  .future-banner{min-height:640px}
+  .future-content{padding-bottom:54px}
+  .experience-head{align-items:flex-start;flex-direction:column}
+  .story-card{flex-basis:min(88vw,720px);grid-template-columns:1fr}
+  .story-media{min-height:320px}
+  .story-copy{padding:34px 30px}
+  .vslide-grid{grid-template-columns:1fr;gap:22px}
+  .vslide-visual{position:relative;top:auto;height:auto;padding:48px 0 0;grid-row:1}
+  .vslide-copy{padding:0 0 64px;gap:24px}
+  .vslide-panel{min-height:0;opacity:1!important;transform:none!important;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);border-radius:18px;padding:26px}
+  .vslide-dots{display:none}
+  .founder-dialog{grid-template-columns:1fr;gap:24px;padding:24px;max-height:88vh}
+  .founder-photo img{max-height:420px;object-fit:cover}
+  .prob-cards,.steps,.diff-grid,.sector-grid,.stats,.split-grid,.dev-panel.active,.foot-grid{grid-template-columns:1fr!important}
+  .steps{gap:14px}
+  .sector-grid{grid-template-columns:1fr 1fr!important}
+  .stats{grid-template-columns:1fr 1fr!important}
+  .foot-grid{grid-template-columns:1fr 1fr!important}
+  .mobile-menu.open{display:block;position:fixed;top:68px;left:0;right:0;bottom:0;background:var(--vein);z-index:99;padding:30px 24px}
+  .mobile-menu a{display:block;font-family:var(--font-display);font-size:26px;font-weight:600;color:var(--origin);padding:16px 0;border-bottom:1px solid var(--line)}
+  .hero-cta .btn,.cta-box .btns .btn{flex:1;justify-content:center}
+}
+@media(max-width:560px){
+  .wrap{padding:0 18px}
+  .nav-right>.btn-primary{display:none}
+  .future-banner{min-height:560px}
+  .future-bg{background-position:62% center}
+  .future-banner h2{font-size:clamp(40px,13vw,58px);max-width:340px}
+  .future-kicker{min-width:0;width:100%;max-width:300px}
+  .experience{padding:68px 0}
+  .story-controls{display:none}
+  .story-track{gap:16px;padding-inline:18px}
+  .story-card{flex-basis:88vw;border-radius:20px;min-height:0}
+  .story-media{min-height:250px}
+  .story-copy{padding:28px 22px}
+  .story-copy p{font-size:15px}
+  .vslide-panel h2{font-size:36px}
+  .vslide-panel p{font-size:17px;line-height:1.4}
+  .founder-strip{padding:46px 0}
+  .founder-card{flex-direction:column;text-align:center;gap:18px}
+  .founder-avatar{width:104px;height:104px}
+  .founder-card .founder-link{justify-content:center}
+  .founder-modal{padding:14px}
+  .founder-bio p{font-size:17px;line-height:1.4}
+  .sector-grid,.stats,.foot-grid{grid-template-columns:1fr!important}
+  .dev-tabs{gap:8px}
+  .dev-tab{padding:9px 16px;font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="wrap nav">
+    <a href="#" class="brand" aria-label="PalmVein">
+      <svg class="pv-logo" viewBox="0 0 701.57 146.53" xmlns="http://www.w3.org/2000/svg" role="img">
+        <g fill="#4888f4">
+          <path d="M453.09,47.34c-4-2.41-9.05-3.62-15.01-3.62-4.79,0-9.29,1.06-13.37,3.14-3.84,1.96-7.03,4.68-9.51,8.08-1.31-2.33-2.96-4.3-4.9-5.88-2.14-1.73-4.61-3.06-7.33-3.97-2.73-.91-5.85-1.37-9.28-1.37-4.62,0-8.79.99-12.38,2.94-3.21,1.75-5.89,4.05-7.98,6.86l-.93-5.68c-.24-1.45-1.49-2.51-2.96-2.51h-12.34c-1.1,0-2,.9-2,2v64.59c0,1.1.9,2,2,2h15.1c1.1,0,2-.9,2-2v-34.44c0-3.67.6-6.85,1.77-9.45,1.16-2.58,2.81-4.58,4.91-5.96,2.1-1.37,4.51-2.06,7.17-2.06,4.28,0,7.49,1.38,9.52,4.09,2.07,2.76,3.12,6.81,3.12,12.04v35.78c0,1.1.9,2,2,2h15.1c1.1,0,2-.9,2-2v-34.44c0-3.67.6-6.85,1.77-9.45,1.16-2.58,2.84-4.58,4.98-5.95,2.14-1.37,4.63-2.07,7.37-2.07,4.19,0,7.33,1.38,9.32,4.09,2.03,2.76,3.06,6.81,3.06,12.04v35.78c0,1.1.9,2,2,2h14.97c1.1,0,2-.9,2-2v-37.39c0-6.57-1.03-12.19-3.06-16.7-2.04-4.54-5.11-8.07-9.12-10.48Z"/>
+          <path d="M516.81,47.38l-15.72,47.41-15.72-47.41c-.41-1.23-1.55-2.06-2.85-2.06h-15.09c-1.39,0-2.36,1.38-1.88,2.69l23.71,64.59c.29.79,1.04,1.31,1.88,1.31h19.9c.84,0,1.59-.52,1.88-1.31l23.58-64.59c.48-1.3-.49-2.69-1.88-2.69h-14.96c-1.29,0-2.44.83-2.85,2.06Z"/>
+          <path d="M586.39,48.21c-5.06-2.98-11.06-4.49-17.82-4.49s-13.14,1.58-18.43,4.7c-5.29,3.12-9.43,7.47-12.32,12.94-2.89,5.45-4.35,11.83-4.35,18.94s1.49,13.13,4.42,18.41c2.94,5.29,7.11,9.46,12.4,12.4,5.28,2.93,11.43,4.42,18.28,4.42,5.32,0,10.22-1.01,14.56-3,4.34-1.99,8.05-4.74,11.03-8.17,2.98-3.43,5.14-7.33,6.41-11.58l.19-.64h-19.49l-.14.28c-1.03,2.14-2.61,3.92-4.72,5.3-2.1,1.37-4.78,2.06-7.97,2.06s-6.05-.72-8.46-2.14c-2.41-1.42-4.31-3.47-5.64-6.1-1.04-2.04-1.68-4.38-1.92-6.98h49.71l.07-.42c.18-1.19.27-2.36.27-3.49v-3.02c0-6.4-1.42-12.21-4.22-17.27-2.8-5.06-6.79-9.14-11.85-12.12ZM554.46,67.65c1.42-2.76,3.4-4.83,5.89-6.16,2.51-1.34,5.27-2.02,8.21-2.02,4.05,0,7.48,1.22,10.19,3.63,2.59,2.3,4.07,5.48,4.42,9.45h-30.37c.36-1.84.91-3.48,1.65-4.9Z"/>
+          <rect x="609.01" y="45.32" width="19.11" height="68.59" rx="2" ry="2"/>
+          <path d="M618.72,16.02c-3.33,0-6.13,1.01-8.32,3.01-2.2,2.01-3.31,4.6-3.31,7.68s1.11,5.67,3.31,7.68c2.18,2,4.98,3.01,8.32,3.01s6.27-1.01,8.45-3.01c2.2-2.01,3.31-4.6,3.31-7.68s-1.11-5.66-3.31-7.68c-2.19-2-5.03-3.01-8.45-3.01Z"/>
+          <path d="M698.32,57.69c-2.04-4.54-5.07-8.05-8.98-10.42-3.91-2.36-8.78-3.56-14.47-3.56-5.34,0-10.01,1.2-13.87,3.56-3.41,2.09-6.17,4.78-8.2,8.02l-.89-7.33c-.18-1.51-1.46-2.64-2.98-2.64h-12.25c-1.1,0-2,.9-2,2v64.59c0,1.1.9,2,2,2h15.1c1.1,0,2-.9,2-2v-34.58c0-3.66.66-6.81,1.96-9.36,1.29-2.54,3.1-4.52,5.38-5.9,2.28-1.38,4.92-2.07,7.86-2.07,4.56,0,7.97,1.38,10.14,4.1,2.2,2.76,3.31,6.8,3.31,12.03v35.78c0,1.1.9,2,2,2h14.97c1.1,0,2-.9,2-2v-37.53c0-6.57-1.03-12.18-3.06-16.7Z"/>
+          <rect x="328.09" y="23.1" width="20.46" height="90.82" rx="2" ry="2"/>
+          <path d="M319.54,45.34h-11.94c-1.47,0-2.72,1.06-2.96,2.51l-.34,2.07c-5.59-3.92-12.34-6.23-19.62-6.23-19.27,0-34.9,16.08-34.9,35.92s15.63,35.9,34.9,35.9c6.65,0,12.86-1.92,18.15-5.24v1.65c0,1.1.9,2,2,2h14.71c1.1,0,2-.9,2-2V47.34c0-1.1-.9-2-2-2ZM284.9,96.42c-9.67,0-16.44-7.53-16.44-16.82s6.77-16.82,16.44-16.82,16.43,7.53,16.43,16.82-6.76,16.82-16.43,16.82Z"/>
+          <path d="M192.7,111.32c5.05,2.49,10.7,3.9,16.55,3.9,19.76,0,35.78-16.02,35.78-35.78s-16.02-35.78-35.78-35.78-37.19,16.02-37.19,35.78v49.45c0,.41.33.74.74.74h18.24c.33,0,.59-.27.59-.59v-17.05c0-.55.57-.91,1.07-.67ZM208.55,62.52c9.34,0,16.91,7.57,16.91,16.91s-7.57,16.91-16.91,16.91-16.91-7.57-16.91-16.91,7.57-16.91,16.91-16.91Z"/>
+        </g>
+        <path fill="#84eca6" d="M129.79,43.47h-19.79c-.74,0-1.34.6-1.35,1.34-.71,34.91-29.24,63-64.32,63-6.83,0-13.41-1.07-19.59-3.04-.47-.15-.95.2-.95.69v21.33c0,.63.43,1.18,1.05,1.32,6.27,1.44,12.79,2.2,19.49,2.2,47.51,0,86.09-38.14,86.82-85.47.01-.75-.6-1.37-1.36-1.37Z"/>
+        <path fill="#4888f4" d="M25.08,82.21c6.13,3.03,12.99,4.73,20.1,4.73,24.01,0,43.47-19.46,43.47-43.47S69.19,0,45.18,0,0,19.46,0,43.47v60.08c0,.5.4.9.9.9h22.16c.4,0,.72-.32.72-.72v-20.71c0-.67.7-1.11,1.29-.81ZM44.33,22.93c11.35,0,20.54,9.2,20.54,20.54s-9.2,20.54-20.54,20.54-20.54-9.2-20.54-20.54,9.2-20.54,20.54-20.54Z"/>
+      </svg>
+    </a>
+    <nav class="nav-links">
+      <a href="#how" data-i="nav_tech">Tecnologia</a>
+      <a href="#devices" data-i="nav_devices">Dispositivos</a>
+      <a href="#sectors" data-i="nav_where">Onde usar</a>
+      <a href="#market" data-i="nav_company">Empresa</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang">
+        <button class="lang-btn" id="langBtn">
+          <i class="ph ph-globe"></i><span id="langLabel">PT</span><i class="ph ph-caret-down" style="font-size:12px"></i>
+        </button>
+        <div class="lang-menu" id="langMenu">
+          <button data-lang="pt" class="active"><span class="flag">🇧🇷</span> Português</button>
+          <button data-lang="en"><span class="flag">🇺🇸</span> English</button>
+          <button data-lang="es"><span class="flag">🇪🇸</span> Español</button>
+        </div>
+      </div>
+      <button class="btn btn-primary" data-i="cta_demo">Agendar demo</button>
+      <button class="burger" id="burger"><i class="ph ph-list"></i></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#how" data-i="nav_tech">Tecnologia</a>
+  <a href="#devices" data-i="nav_devices">Dispositivos</a>
+  <a href="#sectors" data-i="nav_where">Onde usar</a>
+  <a href="#market" data-i="nav_company">Empresa</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow" data-i="hero_eyebrow">Biometria vascular · Homologada Anatel</div>
+      <h1><span data-i="hero_h1a">Você é</span><br><span class="accent" data-i="hero_h1b">o seu token.</span></h1>
+      <p class="hero-sub" data-i="hero_sub">Pague, acesse e se identifique só com a palma da mão. Sem cartão. Sem celular. Sem senha. Cadastro único. Para sempre.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" data-i="hero_cta1">Falar com comercial</button>
+        <button class="btn btn-ghost" data-i="hero_cta2">Ver como funciona</button>
+      </div>
+      <div class="trust-strip">
+        <div class="trust-item"><i class="ph-fill ph-seal-check"></i> <span data-i="trust1">Anatel Homologado</span></div>
+        <div class="trust-item"><i class="ph-fill ph-credit-card"></i> Mastercard Click2Pay</div>
+        <div class="trust-item"><i class="ph-fill ph-lock-key"></i> LGPD · PCI DSS</div>
+      </div>
+    </div>
+    <div class="hero-visual tilt">
+      <img class="hero-photo" src="_imagens/Wavepass_500_Palmvein.png" alt="Leitura biométrica PalmVein em um dispositivo de pagamento">
+      <div class="glow"></div>
+      <div class="scan-line"></div>
+      <div class="hero-tag"><i class="ph-fill ph-check-circle"></i> <span data-i="hero_approve">Aprovado em &lt;800ms</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROBLEM ===== -->
+<section class="problem">
+  <div class="wrap">
+    <div class="eyebrow" data-i="prob_eyebrow">O problema</div>
+    <h2 data-i="prob_h2">O pagamento evoluiu. A identidade, ainda não.</h2>
+    <p class="lead" data-i="prob_lead">Os meios de pagamento dependem de objetos e segredos — que podem ser perdidos, clonados ou esquecidos. A PalmVein elimina essa dependência.</p>
+    <div class="prob-cards">
+      <div class="prob-card"><i class="ph ph-credit-card"></i><h4 data-i="prob_c1t">Objetos se perdem</h4><p data-i="prob_c1p">Cartão e celular podem ser esquecidos, roubados ou clonados a qualquer momento.</p></div>
+      <div class="prob-card"><i class="ph ph-password"></i><h4 data-i="prob_c2t">Segredos vazam</h4><p data-i="prob_c2p">Senhas e tokens são esquecidos, interceptados e reaproveitados em fraudes.</p></div>
+      <div class="prob-card"><i class="ph ph-warning-circle"></i><h4 data-i="prob_c3t">A fraude cresce</h4><p data-i="prob_c3p">Metade dos brasileiros já foi vítima de fraude. O prejuízo passa de R$10 bilhões por ano.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW ===== -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="how-head">
+      <div class="eyebrow" data-i="how_eyebrow">Como funciona</div>
+      <h2 data-i="how_h2">Uma vez. Para sempre.</h2>
+      <p class="muted" data-i="how_sub">Do cadastro à aprovação em menos de um segundo — sem armazenar nenhuma imagem biométrica.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="num">01</span><i class="ph ph-hand-palm"></i><h4 data-i="how_s1t">Cadastro único</h4><p data-i="how_s1p">A palma é registrada uma vez. O mapa vascular é criptografado e vinculado a um token.</p></div>
+      <div class="step"><span class="num">02</span><i class="ph ph-scan"></i><h4 data-i="how_s2t">Leitura IR</h4><p data-i="how_s2p">O sensor infravermelho captura as veias em tempo real. Nenhuma imagem é armazenada.</p></div>
+      <div class="step"><span class="num">03</span><i class="ph ph-lightning"></i><h4 data-i="how_s3t">Match instantâneo</h4><p data-i="how_s3p">O algoritmo compara o template criptografado.</p><div class="metric">&lt;800ms · FAR &lt;0,001%</div></div>
+      <div class="step final"><span class="num">04</span><i class="ph-fill ph-check-circle"></i><h4 data-i="how_s4t">Transação aprovada</h4><p data-i="how_s4p">Pagamento via Pix, Mastercard ou Open Finance. Comprovante direto no app.</p><div class="metric" data-i="how_s4m">Momento de contato</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DIFFERENTIALS ===== -->
+<section class="diff">
+  <div class="wrap">
+    <div class="how-head" style="text-align:left;margin:0 0 8px">
+      <div class="eyebrow" data-i="diff_eyebrow">Diferenciais</div>
+      <h2 style="font-size:clamp(30px,4.5vw,46px);color:var(--origin)" data-i="diff_h2">Impossível de copiar. Impossível de perder.</h2>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-card"><div class="diff-icon"><i class="ph ph-fingerprint"></i></div><div><h4 data-i="diff_1t">Inalterável e interna</h4><p data-i="diff_1p">As veias ficam abaixo da pele. Impossível fotografar, copiar ou falsificar. Não envelhece como a digital.</p></div></div>
+      <div class="diff-card"><div class="diff-icon"><i class="ph ph-timer"></i></div><div><h4 data-i="diff_2t">Sub-segundo</h4><p data-i="diff_2p">Leitura em menos de 800ms — mais rápido que chip, tap-to-pay ou QR Code. Sem contato físico.</p></div></div>
+      <div class="diff-card"><div class="diff-icon"><i class="ph ph-shield-check"></i></div><div><h4 data-i="diff_3t">FAR &lt; 0,001%</h4><p data-i="diff_3p">Taxa de falsa aceitação 100× menor que o reconhecimento facial.</p></div></div>
+      <div class="diff-card"><div class="diff-icon"><i class="ph ph-plugs-connected"></i></div><div><h4 data-i="diff_4t">Agnóstico de rede</h4><p data-i="diff_4p">Integra com Pix, Mastercard Click2Pay e Open Finance. IP 100% nacional.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEVICES ===== -->
+<section class="devices" id="devices">
+  <div class="wrap">
+    <div class="how-head">
+      <div class="eyebrow" style="justify-content:center" data-i="dev_eyebrow">Dispositivos</div>
+      <h2 data-i="dev_h2">O hardware que lê você.</h2>
+      <p class="muted" data-i="dev_sub">Do módulo de acoplagem ao POS completo — uma linha para cada operação.</p>
+    </div>
+    <div class="dev-tabs">
+      <button class="dev-tab active" data-dev="0">PalmVein 01</button>
+      <button class="dev-tab" data-dev="1">WavePass 500</button>
+      <button class="dev-tab" data-dev="2" data-i="dev_tab3">Integrações</button>
+    </div>
+
+    <div class="dev-panel active" data-panel="0">
+      <div class="dev-visual tilt"><img src="_imagens/Dispositivos/Palmvein_01.png" alt="PalmVein 01, módulo de leitura biométrica vascular"><div class="glow"></div><div class="dev-badge" data-i="dev_badge1">Acoplagem USB</div></div>
+      <div class="dev-info">
+        <div class="eyebrow" data-i="dev1_eye">Módulo de leitura</div>
+        <h3>PalmVein 01</h3>
+        <p data-i="dev1_p">Compacto, robusto e elegante. Acopla via USB a qualquer POS, tablet ou PC e adiciona leitura biométrica vascular ao que você já usa.</p>
+        <ul class="dev-specs">
+          <li><i class="ph-fill ph-check-circle"></i><span data-i="dev1_1">Acoplagem USB universal — <b>Android 8+, Windows, Linux</b></span></li>
+          <li><i class="ph-fill ph-check-circle"></i><span data-i="dev1_2">Leitura IR multicampo com <b>anti-spoofing embarcado</b></span></li>
+          <li><i class="ph-fill ph-check-circle"></i><span data-i="dev1_3"><b>SDK aberto + API REST</b> com webhooks padronizados</span></li>
+          <li><i class="ph-fill ph-check-circle"></i><span data-i="dev1_4"><b>Homologado Anatel</b> · IP52 · supply chain nacional</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dev-panel" data-panel="1">
+      <div class="dev-visual tilt"><img src="_imagens/Dispositivos/Wavepass.png" alt="WavePass 500, terminal de pagamento biométrico"><div class="glow"></div><div class="dev-badge" data-i="dev_badge2">POS standalone</div></div>
+      <div class="dev-info">
+        <div class="eyebrow" data-i="dev2_eye">Terminal all-in-one</div>
+        <h3>WavePass 500</h3>
+        <p data-i="dev2_p">Terminal standalone que substitui o POS convencional. Aceita palma, Pix, cartão e QR — tudo em um só aparelho.</p>
+        <ul class="dev-specs">
+          <li><i class="ph-fill ph-check-circle"></i><span data-i="dev2_1"><b>Pix + Mastercard + Open Finance</b> — API para qualquer bandeira</span></li>
+          <li><i class="ph-fill ph-check-circle"></i><span data-i="dev2_2"><b>E-ink + NFC + QR Code</b> — retrocompatível com cartão e Pix QR</span></li>
+          <li><i class="ph-fill ph-check-circle"></i><span data-i="dev2_3">Dashboard em nuvem com <b>transações e relatórios em tempo real</b></span></li>
+          <li><i class="ph-fill ph-check-circle"></i><span data-i="dev2_4">Substitui o terminal atual sem mudar a operação</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dev-panel" data-panel="2">
+      <div class="dev-visual vivid tilt"><img src="_imagens/magnific__quero-que-complete-essa-imnagem-img2-tirando-essa-__87176.png" alt="PalmVein integrado a app, POS e dispositivos por API"><div class="glow"></div><div class="dev-badge" data-i="dev_badge3">SDK &amp; API</div></div>
+      <div class="dev-info">
+        <div class="eyebrow" data-i="dev3_eye">Acoplados e integrações</div>
+        <h3 data-i="dev3_h3">Conecta ao que você já tem</h3>
+        <p data-i="dev3_p">Leve a biometria vascular para dentro do seu sistema — catracas, totens, PDVs e apps próprios — pela nossa camada de integração.</p>
+        <ul class="dev-specs">
+          <li><i class="ph-fill ph-check-circle"></i><span data-i="dev3_1"><b>API REST + webhooks</b> padronizados para qualquer stack</span></li>
+          <li><i class="ph-fill ph-check-circle"></i><span data-i="dev3_2">Acoplagem a <b>catracas, totens e controle de acesso</b></span></li>
+          <li><i class="ph-fill ph-check-circle"></i><span data-i="dev3_3">Match no servidor em <b>&lt;800ms</b> · nenhuma imagem armazenada</span></li>
+          <li><i class="ph-fill ph-check-circle"></i><span data-i="dev3_4">Arquitetura <b>privacy-by-design</b> — LGPD, PCI DSS e GDPR</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTORS ===== -->
+<section class="sectors" id="sectors">
+  <div class="wrap">
+    <div class="how-head">
+      <div class="eyebrow" style="justify-content:center" data-i="sec_eyebrow">Onde usar</div>
+      <h2 data-i="sec_h2">Um gesto. Tudo resolvido.</h2>
+      <p data-i="sec_sub">A mesma palma paga, acessa e identifica em qualquer setor.</p>
+    </div>
+    <div class="sector-grid">
+      <div class="sector"><i class="ph ph-ticket"></i><h4 data-i="sec1t">Eventos &amp; Estádios</h4><p data-i="sec1p">Entrada e pagamento por palma. Zero fila, zero atrito.</p></div>
+      <div class="sector"><i class="ph ph-shopping-cart"></i><h4 data-i="sec2t">Varejo &amp; Farmácias</h4><p data-i="sec2p">Checkout biométrico. Menos chargeback e abandono.</p></div>
+      <div class="sector"><i class="ph ph-bed"></i><h4 data-i="sec3t">Hotelaria &amp; Turismo</h4><p data-i="sec3p">Check-in, acesso ao quarto e consumos com a palma.</p></div>
+      <div class="sector"><i class="ph ph-first-aid"></i><h4 data-i="sec4t">Saúde &amp; Hospitais</h4><p data-i="sec4p">Identificação e cobrança biométrica. Menos fraude.</p></div>
+      <div class="sector"><i class="ph ph-graduation-cap"></i><h4 data-i="sec5t">Benefícios &amp; Educação</h4><p data-i="sec5p">Cantinas e acesso. Substitui o cartão físico.</p></div>
+      <div class="sector"><i class="ph ph-bank"></i><h4 data-i="sec6t">Governo &amp; Serviços</h4><p data-i="sec6p">Identidade digital e pagamento de serviços públicos.</p></div>
+      <div class="sector"><i class="ph ph-buildings"></i><h4 data-i="sec7t">Condomínios</h4><p data-i="sec7p">Controle de acesso sem fraude de entrada.</p></div>
+      <div class="sector"><i class="ph ph-roller-coaster"></i><h4 data-i="sec8t">Parques Temáticos</h4><p data-i="sec8p">Acesso e atrações sem pulseira nem cartão.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCE SLIDER ===== -->
+<section class="experience">
+  <div class="wrap experience-head">
+    <div>
+      <div class="eyebrow" data-i="story_eyebrow">Cenas de uso</div>
+      <h2 data-i="story_h2">Um gesto que cabe em qualquer rotina.</h2>
+    </div>
+    <p class="experience-sub" data-i="story_sub">Da entrada ao consumo, a mesma palma resolve pagamentos, acessos e identificação sem cartão, celular ou senha.</p>
+    <div class="story-controls" aria-label="Controles dos slides">
+      <button class="story-btn" data-story="prev" aria-label="Slide anterior"><i class="ph ph-caret-left"></i></button>
+      <button class="story-btn" data-story="next" aria-label="Próximo slide"><i class="ph ph-caret-right"></i></button>
+    </div>
+  </div>
+  <div class="story-track" id="storyTrack">
+    <article class="story-card">
+      <div class="story-media"><img src="_imagens/Lojadeternos.png" alt="Pagamento PalmVein em loja de roupas"></div>
+      <div class="story-copy">
+        <span class="story-kicker" data-i="story_k1">Varejo premium</span>
+        <h3 data-i="story_t1">A compra termina antes da fila começar.</h3>
+        <p data-i="story_p1">Checkout com a palma para compras rápidas, sem buscar cartão, abrir app ou digitar senha no balcão.</p>
+        <span class="story-chip"><i class="ph-fill ph-check-circle"></i> <span data-i="story_chip1">Pagamento aprovado</span></span>
+      </div>
+    </article>
+    <article class="story-card">
+      <div class="story-media"><img src="_imagens/Homem_Hotel.png" alt="Hóspede usando PalmVein no hotel"></div>
+      <div class="story-copy">
+        <span class="story-kicker" data-i="story_k2">Hotelaria</span>
+        <h3 data-i="story_t2">Da recepção ao quarto, sem cartão físico.</h3>
+        <p data-i="story_p2">Check-in, consumo e acesso integrados para o hóspede circular com leveza durante toda a estadia.</p>
+        <span class="story-chip"><i class="ph-fill ph-door-open"></i> <span data-i="story_chip2">Acesso liberado</span></span>
+      </div>
+    </article>
+    <article class="story-card">
+      <div class="story-media"><img src="_imagens/Casal_Piscina.jpg" alt="Pagamento PalmVein em bar de piscina"></div>
+      <div class="story-copy">
+        <span class="story-kicker" data-i="story_k3">Lazer sem carteira</span>
+        <h3 data-i="story_t3">Na piscina, sua mão também resolve.</h3>
+        <p data-i="story_p3">No bar, resort ou parque, a palma paga sem celular molhado, pulseira, comanda ou documento no bolso.</p>
+        <span class="story-chip"><i class="ph-fill ph-waves"></i> <span data-i="story_chip3">Sem celular na mão</span></span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ===== AUDIENCE SPLIT ===== -->
+<section>
+  <div class="wrap">
+    <div class="how-head" style="text-align:center">
+      <div class="eyebrow" style="justify-content:center" data-i="split_eyebrow">Dois caminhos</div>
+      <h2 style="font-size:clamp(28px,4vw,44px);color:var(--origin)" data-i="split_h2">Para o seu negócio. Para você.</h2>
+    </div>
+    <div class="split-grid">
+      <div class="split-card split-b2b">
+        <span class="tag" data-i="split_b2b_tag">Para empresas</span>
+        <h3 data-i="split_b2b_h">Infraestrutura que você instala uma vez e escala sempre.</h3>
+        <p data-i="split_b2b_p">Reduza fraude, fila e atrito no checkout. Aumente conversão e diferencie sua operação com a primeira biometria vascular homologada do Brasil.</p>
+        <button class="btn btn-dark" data-i="split_b2b_cta">Agendar demonstração</button>
+      </div>
+      <div class="split-card split-b2c">
+        <span class="tag" data-i="split_b2c_tag">Para você</span>
+        <h3 data-i="split_b2c_h">Você saiu sem cartão. Sem celular. Saiu com a sua mão.</h3>
+        <p data-i="split_b2c_p">Sua palma é o seu ingresso, o seu cartão e a sua senha — para sempre. Vá a qualquer lugar. Seja apenas você.</p>
+        <button class="btn btn-light" data-i="split_b2c_cta">Quero conhecer</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VERTICAL PRODUCT SLIDER ===== -->
+<section class="vertical-slider">
+  <div class="wrap vslide-grid">
+    <div class="vslide-copy">
+      <article class="vslide-panel active" data-vslide="0">
+        <span class="vslide-kicker">Operação</span>
+        <h2>Instale uma vez. <span>Escale sempre.</span></h2>
+        <p>Leve biometria vascular para PDVs, totens e acessos sem trocar toda a infraestrutura da operação.</p>
+      </article>
+      <article class="vslide-panel" data-vslide="1">
+        <span class="vslide-kicker">Experiência</span>
+        <h2>Menos passos. <span>Mais conversão.</span></h2>
+        <p>O cliente paga, entra ou se identifica em segundos, sem senha, QR Code, cartão ou celular na mão.</p>
+      </article>
+      <article class="vslide-panel" data-vslide="2">
+        <span class="vslide-kicker">Confiança</span>
+        <h2>Identidade viva. <span>Fraude menor.</span></h2>
+        <p>A leitura da palma combina presença física, rapidez e uma credencial que não pode ser esquecida.</p>
+      </article>
+    </div>
+    <div class="vslide-visual" aria-hidden="true">
+      <img src="_imagens/Dispositivos/Palmvein_01.png" alt="">
+      <div class="vslide-dots">
+        <span class="vslide-dot active"></span>
+        <span class="vslide-dot"></span>
+        <span class="vslide-dot"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FUTURE BANNER ===== -->
+<section class="future-banner">
+  <div class="future-bg" aria-hidden="true"></div>
+  <div class="future-content">
+    <div class="wrap">
+      <div class="future-kicker" data-i="future_kicker">Você é a chave</div>
+      <h2 data-i="future_h"><span>O futuro</span> abre as portas pra você.</h2>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MARKET ===== -->
+<section class="market" id="market">
+  <div class="wrap">
+    <div class="how-head">
+      <div class="eyebrow" style="justify-content:center" data-i="mkt_eyebrow">Contexto de mercado</div>
+      <h2 data-i="mkt_h2">A janela de liderança está aberta agora.</h2>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="big">50,7%</div><p data-i="mkt1">dos brasileiros foram vítimas de fraude em 2024</p><div class="src">Serasa Experian, 2025</div></div>
+      <div class="stat"><div class="big">R$10,1bi</div><p data-i="mkt2">em perdas por fraudes bancárias digitais no Brasil</p><div class="src">Febraban, 2025</div></div>
+      <div class="stat"><div class="big">US$46,6bi</div><p data-i="mkt3">mercado global de pagamento biométrico em 2025</p><div class="src">TBRC, 2025</div></div>
+      <div class="stat"><div class="big">84%</div><p data-i="mkt4">dos consumidores globais já usaram biometria em transações</p><div class="src">market.us</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="cta-final">
+  <div class="wrap">
+    <div class="cta-box">
+      <div class="glow"></div>
+      <h2 data-i="ctaf_h">Você é o seu token.</h2>
+      <p data-i="ctaf_p">Comece pela demonstração ou fale com nosso time. A biometria que liberta já está disponível.</p>
+      <div class="btns">
+        <button class="btn btn-primary" data-i="ctaf_b1">Falar com comercial</button>
+        <button class="btn btn-light" data-i="ctaf_b2">Quero conhecer</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOUNDER ===== -->
+<section class="founder-strip">
+  <div class="wrap">
+    <button class="founder-card" id="founderOpen" type="button" aria-haspopup="dialog" aria-controls="founderModal">
+      <img class="founder-avatar" src="_imagens/Avatar_Rodrigo.png" alt="Rodrigo Carvalho">
+      <span>
+        <span class="founder-name">Rodrigo Carvalho</span>
+        <span class="founder-role">Founder &amp; CEO da PalmVein</span>
+        <span class="founder-link">Conheça nosso fundador <i class="ph ph-arrow-right"></i></span>
+      </span>
+    </button>
+  </div>
+</section>
+
+<div class="founder-modal" id="founderModal" role="dialog" aria-modal="true" aria-labelledby="founderTitle">
+  <div class="founder-dialog">
+    <button class="founder-close" id="founderClose" type="button" aria-label="Fechar"><i class="ph ph-x"></i></button>
+    <div class="founder-photo">
+      <h3>Rodrigo Carvalho</h3>
+      <p>Founder &amp; CEO da PalmVein</p>
+      <img src="_imagens/Rodrigo_Founder.jpeg" alt="Rodrigo Carvalho, founder e CEO da PalmVein">
+      <div class="founder-social"><i class="ph-fill ph-linkedin-logo"></i><span>@rodrigoirroba</span></div>
+    </div>
+    <div class="founder-bio">
+      <h2 id="founderTitle">Track record em inovação e construção de negócios</h2>
+      <p>Formado pela Yale University em Software e Aplicações Tecnológicas, Rodrigo acumula mais de 25 anos de experiência em tecnologia e empreendedorismo.</p>
+      <p>É fundador da Irroba, plataforma de e-commerce consolidada no mercado e responsável por atender milhares de operações digitais. Sua trajetória combina desenvolvimento de software, inovação e construção de negócios escaláveis.</p>
+      <p>Hoje lidera a PalmVein com a missão de transformar a biometria da palma da mão em uma infraestrutura global para identidade, acesso e pagamentos.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#" class="brand" aria-label="PalmVein">
+          <svg class="pv-logo pv-logo-foot" viewBox="0 0 701.57 146.53" xmlns="http://www.w3.org/2000/svg" role="img">
+            <g fill="#4888f4">
+              <path d="M453.09,47.34c-4-2.41-9.05-3.62-15.01-3.62-4.79,0-9.29,1.06-13.37,3.14-3.84,1.96-7.03,4.68-9.51,8.08-1.31-2.33-2.96-4.3-4.9-5.88-2.14-1.73-4.61-3.06-7.33-3.97-2.73-.91-5.85-1.37-9.28-1.37-4.62,0-8.79.99-12.38,2.94-3.21,1.75-5.89,4.05-7.98,6.86l-.93-5.68c-.24-1.45-1.49-2.51-2.96-2.51h-12.34c-1.1,0-2,.9-2,2v64.59c0,1.1.9,2,2,2h15.1c1.1,0,2-.9,2-2v-34.44c0-3.67.6-6.85,1.77-9.45,1.16-2.58,2.81-4.58,4.91-5.96,2.1-1.37,4.51-2.06,7.17-2.06,4.28,0,7.49,1.38,9.52,4.09,2.07,2.76,3.12,6.81,3.12,12.04v35.78c0,1.1.9,2,2,2h15.1c1.1,0,2-.9,2-2v-34.44c0-3.67.6-6.85,1.77-9.45,1.16-2.58,2.84-4.58,4.98-5.95,2.14-1.37,4.63-2.07,7.37-2.07,4.19,0,7.33,1.38,9.32,4.09,2.03,2.76,3.06,6.81,3.06,12.04v35.78c0,1.1.9,2,2,2h14.97c1.1,0,2-.9,2-2v-37.39c0-6.57-1.03-12.19-3.06-16.7-2.04-4.54-5.11-8.07-9.12-10.48Z"/>
+              <path d="M516.81,47.38l-15.72,47.41-15.72-47.41c-.41-1.23-1.55-2.06-2.85-2.06h-15.09c-1.39,0-2.36,1.38-1.88,2.69l23.71,64.59c.29.79,1.04,1.31,1.88,1.31h19.9c.84,0,1.59-.52,1.88-1.31l23.58-64.59c.48-1.3-.49-2.69-1.88-2.69h-14.96c-1.29,0-2.44.83-2.85,2.06Z"/>
+              <path d="M586.39,48.21c-5.06-2.98-11.06-4.49-17.82-4.49s-13.14,1.58-18.43,4.7c-5.29,3.12-9.43,7.47-12.32,12.94-2.89,5.45-4.35,11.83-4.35,18.94s1.49,13.13,4.42,18.41c2.94,5.29,7.11,9.46,12.4,12.4,5.28,2.93,11.43,4.42,18.28,4.42,5.32,0,10.22-1.01,14.56-3,4.34-1.99,8.05-4.74,11.03-8.17,2.98-3.43,5.14-7.33,6.41-11.58l.19-.64h-19.49l-.14.28c-1.03,2.14-2.61,3.92-4.72,5.3-2.1,1.37-4.78,2.06-7.97,2.06s-6.05-.72-8.46-2.14c-2.41-1.42-4.31-3.47-5.64-6.1-1.04-2.04-1.68-4.38-1.92-6.98h49.71l.07-.42c.18-1.19.27-2.36.27-3.49v-3.02c0-6.4-1.42-12.21-4.22-17.27-2.8-5.06-6.79-9.14-11.85-12.12ZM554.46,67.65c1.42-2.76,3.4-4.83,5.89-6.16,2.51-1.34,5.27-2.02,8.21-2.02,4.05,0,7.48,1.22,10.19,3.63,2.59,2.3,4.07,5.48,4.42,9.45h-30.37c.36-1.84.91-3.48,1.65-4.9Z"/>
+              <rect x="609.01" y="45.32" width="19.11" height="68.59" rx="2" ry="2"/>
+              <path d="M618.72,16.02c-3.33,0-6.13,1.01-8.32,3.01-2.2,2.01-3.31,4.6-3.31,7.68s1.11,5.67,3.31,7.68c2.18,2,4.98,3.01,8.32,3.01s6.27-1.01,8.45-3.01c2.2-2.01,3.31-4.6,3.31-7.68s-1.11-5.66-3.31-7.68c-2.19-2-5.03-3.01-8.45-3.01Z"/>
+              <path d="M698.32,57.69c-2.04-4.54-5.07-8.05-8.98-10.42-3.91-2.36-8.78-3.56-14.47-3.56-5.34,0-10.01,1.2-13.87,3.56-3.41,2.09-6.17,4.78-8.2,8.02l-.89-7.33c-.18-1.51-1.46-2.64-2.98-2.64h-12.25c-1.1,0-2,.9-2,2v64.59c0,1.1.9,2,2,2h15.1c1.1,0,2-.9,2-2v-34.58c0-3.66.66-6.81,1.96-9.36,1.29-2.54,3.1-4.52,5.38-5.9,2.28-1.38,4.92-2.07,7.86-2.07,4.56,0,7.97,1.38,10.14,4.1,2.2,2.76,3.31,6.8,3.31,12.03v35.78c0,1.1.9,2,2,2h14.97c1.1,0,2-.9,2-2v-37.53c0-6.57-1.03-12.18-3.06-16.7Z"/>
+              <rect x="328.09" y="23.1" width="20.46" height="90.82" rx="2" ry="2"/>
+              <path d="M319.54,45.34h-11.94c-1.47,0-2.72,1.06-2.96,2.51l-.34,2.07c-5.59-3.92-12.34-6.23-19.62-6.23-19.27,0-34.9,16.08-34.9,35.92s15.63,35.9,34.9,35.9c6.65,0,12.86-1.92,18.15-5.24v1.65c0,1.1.9,2,2,2h14.71c1.1,0,2-.9,2-2V47.34c0-1.1-.9-2-2-2ZM284.9,96.42c-9.67,0-16.44-7.53-16.44-16.82s6.77-16.82,16.44-16.82,16.43,7.53,16.43,16.82-6.76,16.82-16.43,16.82Z"/>
+              <path d="M192.7,111.32c5.05,2.49,10.7,3.9,16.55,3.9,19.76,0,35.78-16.02,35.78-35.78s-16.02-35.78-35.78-35.78-37.19,16.02-37.19,35.78v49.45c0,.41.33.74.74.74h18.24c.33,0,.59-.27.59-.59v-17.05c0-.55.57-.91,1.07-.67ZM208.55,62.52c9.34,0,16.91,7.57,16.91,16.91s-7.57,16.91-16.91,16.91-16.91-7.57-16.91-16.91,7.57-16.91,16.91-16.91Z"/>
+            </g>
+            <path fill="#84eca6" d="M129.79,43.47h-19.79c-.74,0-1.34.6-1.35,1.34-.71,34.91-29.24,63-64.32,63-6.83,0-13.41-1.07-19.59-3.04-.47-.15-.95.2-.95.69v21.33c0,.63.43,1.18,1.05,1.32,6.27,1.44,12.79,2.2,19.49,2.2,47.51,0,86.09-38.14,86.82-85.47.01-.75-.6-1.37-1.36-1.37Z"/>
+            <path fill="#4888f4" d="M25.08,82.21c6.13,3.03,12.99,4.73,20.1,4.73,24.01,0,43.47-19.46,43.47-43.47S69.19,0,45.18,0,0,19.46,0,43.47v60.08c0,.5.4.9.9.9h22.16c.4,0,.72-.32.72-.72v-20.71c0-.67.7-1.11,1.29-.81ZM44.33,22.93c11.35,0,20.54,9.2,20.54,20.54s-9.2,20.54-20.54,20.54-20.54-9.2-20.54-20.54,9.2-20.54,20.54-20.54Z"/>
+          </svg>
+        </a>
+        <p data-i="foot_desc">Plataforma de identidade biométrica que transforma a palma da mão no documento mais seguro que existe.</p>
+      </div>
+      <div class="foot-col"><h5 data-i="foot_prod">Produto</h5><a href="#devices">PalmVein 01</a><a href="#devices">WavePass 500</a><a href="#how" data-i="nav_tech">Tecnologia</a><a href="#sectors" data-i="nav_where">Onde usar</a></div>
+      <div class="foot-col"><h5 data-i="foot_comp">Empresa</h5><a href="#" data-i="foot_about">Sobre</a><a href="#" data-i="foot_founders">Fundadores</a><a href="#" data-i="foot_press">Imprensa</a><a href="#" data-i="foot_contact">Contato</a></div>
+      <div class="foot-col"><h5 data-i="foot_trust">Confiança</h5><a href="#">Anatel</a><a href="#">Mastercard Click2Pay</a><a href="#">LGPD · PCI DSS</a><a href="#" data-i="foot_privacy">Privacidade</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 PalmVein. <span data-i="foot_rights">Todos os direitos reservados.</span></span>
+      <span class="verbal-nail">Você é o seu token.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- i18n ---------- */
+const I18N={
+  pt:{
+    nav_tech:"Tecnologia",nav_devices:"Dispositivos",nav_where:"Onde usar",nav_company:"Empresa",cta_demo:"Agendar demo",
+    hero_eyebrow:"Biometria vascular · Homologada Anatel",hero_h1a:"Você é",hero_h1b:"o seu token.",
+    hero_sub:"Pague, acesse e se identifique só com a palma da mão. Sem cartão. Sem celular. Sem senha. Cadastro único. Para sempre.",
+    hero_cta1:"Falar com comercial",hero_cta2:"Ver como funciona",trust1:"Anatel Homologado",hero_approve:"Aprovado em <800ms",
+    prob_eyebrow:"O problema",prob_h2:"O pagamento evoluiu. A identidade, ainda não.",
+    prob_lead:"Os meios de pagamento dependem de objetos e segredos — que podem ser perdidos, clonados ou esquecidos. A PalmVein elimina essa dependência.",
+    prob_c1t:"Objetos se perdem",prob_c1p:"Cartão e celular podem ser esquecidos, roubados ou clonados a qualquer momento.",
+    prob_c2t:"Segredos vazam",prob_c2p:"Senhas e tokens são esquecidos, interceptados e reaproveitados em fraudes.",
+    prob_c3t:"A fraude cresce",prob_c3p:"Metade dos brasileiros já foi vítima de fraude. O prejuízo passa de R$10 bilhões por ano.",
+    how_eyebrow:"Como funciona",how_h2:"Uma vez. Para sempre.",how_sub:"Do cadastro à aprovação em menos de um segundo — sem armazenar nenhuma imagem biométrica.",
+    how_s1t:"Cadastro único",how_s1p:"A palma é registrada uma vez. O mapa vascular é criptografado e vinculado a um token.",
+    how_s2t:"Leitura IR",how_s2p:"O sensor infravermelho captura as veias em tempo real. Nenhuma imagem é armazenada.",
+    how_s3t:"Match instantâneo",how_s3p:"O algoritmo compara o template criptografado.",
+    how_s4t:"Transação aprovada",how_s4p:"Pagamento via Pix, Mastercard ou Open Finance. Comprovante direto no app.",how_s4m:"Momento de contato",
+    diff_eyebrow:"Diferenciais",diff_h2:"Impossível de copiar. Impossível de perder.",
+    diff_1t:"Inalterável e interna",diff_1p:"As veias ficam abaixo da pele. Impossível fotografar, copiar ou falsificar. Não envelhece como a digital.",
+    diff_2t:"Sub-segundo",diff_2p:"Leitura em menos de 800ms — mais rápido que chip, tap-to-pay ou QR Code. Sem contato físico.",
+    diff_3t:"FAR < 0,001%",diff_3p:"Taxa de falsa aceitação 100× menor que o reconhecimento facial.",
+    diff_4t:"Agnóstico de rede",diff_4p:"Integra com Pix, Mastercard Click2Pay e Open Finance. IP 100% nacional.",
+    dev_eyebrow:"Dispositivos",dev_h2:"O hardware que lê você.",dev_sub:"Do módulo de acoplagem ao POS completo — uma linha para cada operação.",dev_tab3:"Integrações",
+    dev_badge1:"Acoplagem USB",dev1_eye:"Módulo de leitura",dev1_p:"Compacto, robusto e elegante. Acopla via USB a qualquer POS, tablet ou PC e adiciona leitura biométrica vascular ao que você já usa.",
+    dev1_1:"Acoplagem USB universal — <b>Android 8+, Windows, Linux</b>",dev1_2:"Leitura IR multicampo com <b>anti-spoofing embarcado</b>",dev1_3:"<b>SDK aberto + API REST</b> com webhooks padronizados",dev1_4:"<b>Homologado Anatel</b> · IP52 · supply chain nacional",
+    dev_badge2:"POS standalone",dev2_eye:"Terminal all-in-one",dev2_p:"Terminal standalone que substitui o POS convencional. Aceita palma, Pix, cartão e QR — tudo em um só aparelho.",
+    dev2_1:"<b>Pix + Mastercard + Open Finance</b> — API para qualquer bandeira",dev2_2:"<b>E-ink + NFC + QR Code</b> — retrocompatível com cartão e Pix QR",dev2_3:"Dashboard em nuvem com <b>transações e relatórios em tempo real</b>",dev2_4:"Substitui o terminal atual sem mudar a operação",
+    dev_badge3:"SDK & API",dev3_eye:"Acoplados e integrações",dev3_h3:"Conecta ao que você já tem",dev3_p:"Leve a biometria vascular para dentro do seu sistema — catracas, totens, PDVs e apps próprios — pela nossa camada de integração.",
+    dev3_1:"<b>API REST + webhooks</b> padronizados para qualquer stack",dev3_2:"Acoplagem a <b>catracas, totens e controle de acesso</b>",dev3_3:"Match no servidor em <b><800ms</b> · nenhuma imagem armazenada",dev3_4:"Arquitetura <b>privacy-by-design</b> — LGPD, PCI DSS e GDPR",
+    sec_eyebrow:"Onde usar",sec_h2:"Um gesto. Tudo resolvido.",sec_sub:"A mesma palma paga, acessa e identifica em qualquer setor.",
+    sec1t:"Eventos & Estádios",sec1p:"Entrada e pagamento por palma. Zero fila, zero atrito.",sec2t:"Varejo & Farmácias",sec2p:"Checkout biométrico. Menos chargeback e abandono.",
+    sec3t:"Hotelaria & Turismo",sec3p:"Check-in, acesso ao quarto e consumos com a palma.",sec4t:"Saúde & Hospitais",sec4p:"Identificação e cobrança biométrica. Menos fraude.",
+    sec5t:"Benefícios & Educação",sec5p:"Cantinas e acesso. Substitui o cartão físico.",sec6t:"Governo & Serviços",sec6p:"Identidade digital e pagamento de serviços públicos.",
+    sec7t:"Condomínios",sec7p:"Controle de acesso sem fraude de entrada.",sec8t:"Parques Temáticos",sec8p:"Acesso e atrações sem pulseira nem cartão.",
+    story_eyebrow:"Cenas de uso",story_h2:"Um gesto que cabe em qualquer rotina.",story_sub:"Da entrada ao consumo, a mesma palma resolve pagamentos, acessos e identificação sem cartão, celular ou senha.",
+    story_c1:"<b>Varejo premium.</b> Checkout com a palma para compras rápidas, sem buscar cartão e sem digitar senha no balcão.",
+    story_c2:"<b>Hotelaria.</b> Check-in, consumo e acesso integrados para o hóspede circular com leveza desde a recepção.",
+    story_c3:"<b>Lazer sem carteira.</b> Na piscina, no bar ou no resort, a palma paga sem celular molhado, pulseira ou comanda.",
+    story_c4:"<b>Cafeterias e conveniência.</b> Pagamento recorrente em segundos para quem quer entrar, consumir e seguir o dia.",
+    story_c5:"<b>Condomínios.</b> Moradores, visitantes e veículos passam por uma identificação biométrica simples e difícil de fraudar.",
+    story_c6:"<b>Eventos e estádios.</b> Entrada autorizada por palma para reduzir fila, ingresso duplicado e atrito nos acessos.",
+    story_k1:"Varejo premium",story_t1:"A compra termina antes da fila começar.",story_p1:"Checkout com a palma para compras rápidas, sem buscar cartão, abrir app ou digitar senha no balcão.",story_chip1:"Pagamento aprovado",
+    story_k2:"Hotelaria",story_t2:"Da recepção ao quarto, sem cartão físico.",story_p2:"Check-in, consumo e acesso integrados para o hóspede circular com leveza durante toda a estadia.",story_chip2:"Acesso liberado",
+    story_k3:"Lazer sem carteira",story_t3:"Na piscina, sua mão também resolve.",story_p3:"No bar, resort ou parque, a palma paga sem celular molhado, pulseira, comanda ou documento no bolso.",story_chip3:"Sem celular na mão",
+    split_eyebrow:"Dois caminhos",split_h2:"Para o seu negócio. Para você.",
+    split_b2b_tag:"Para empresas",split_b2b_h:"Infraestrutura que você instala uma vez e escala sempre.",split_b2b_p:"Reduza fraude, fila e atrito no checkout. Aumente conversão e diferencie sua operação com a primeira biometria vascular homologada do Brasil.",split_b2b_cta:"Agendar demonstração",
+    split_b2c_tag:"Para você",split_b2c_h:"Você saiu sem cartão. Sem celular. Saiu com a sua mão.",split_b2c_p:"Sua palma é o seu ingresso, o seu cartão e a sua senha — para sempre. Vá a qualquer lugar. Seja apenas você.",split_b2c_cta:"Quero conhecer",
+    future_kicker:"Você é a chave",future_h:"<span>O futuro</span> abre as portas pra você.",
+    mkt_eyebrow:"Contexto de mercado",mkt_h2:"A janela de liderança está aberta agora.",
+    mkt1:"dos brasileiros foram vítimas de fraude em 2024",mkt2:"em perdas por fraudes bancárias digitais no Brasil",mkt3:"mercado global de pagamento biométrico em 2025",mkt4:"dos consumidores globais já usaram biometria em transações",
+    ctaf_h:"Você é o seu token.",ctaf_p:"Comece pela demonstração ou fale com nosso time. A biometria que liberta já está disponível.",ctaf_b1:"Falar com comercial",ctaf_b2:"Quero conhecer",
+    foot_desc:"Plataforma de identidade biométrica que transforma a palma da mão no documento mais seguro que existe.",
+    foot_prod:"Produto",foot_comp:"Empresa",foot_about:"Sobre",foot_founders:"Fundadores",foot_press:"Imprensa",foot_contact:"Contato",foot_trust:"Confiança",foot_privacy:"Privacidade",foot_rights:"Todos os direitos reservados."
+  },
+  en:{
+    nav_tech:"Technology",nav_devices:"Devices",nav_where:"Use cases",nav_company:"Company",cta_demo:"Book a demo",
+    hero_eyebrow:"Vascular biometrics · Anatel certified",hero_h1a:"You are",hero_h1b:"your own token.",
+    hero_sub:"Pay, access and identify yourself with just your palm. No card. No phone. No password. Register once. Forever.",
+    hero_cta1:"Talk to sales",hero_cta2:"See how it works",trust1:"Anatel Certified",hero_approve:"Approved in <800ms",
+    prob_eyebrow:"The problem",prob_h2:"Payments evolved. Identity didn't.",
+    prob_lead:"Payment methods rely on objects and secrets — things that get lost, cloned or forgotten. PalmVein removes that dependency.",
+    prob_c1t:"Objects get lost",prob_c1p:"Cards and phones can be forgotten, stolen or cloned at any moment.",
+    prob_c2t:"Secrets leak",prob_c2p:"Passwords and tokens get forgotten, intercepted and reused in fraud.",
+    prob_c3t:"Fraud is growing",prob_c3p:"Half of Brazilians have already been fraud victims. Losses top R$10 billion a year.",
+    how_eyebrow:"How it works",how_h2:"Once. Forever.",how_sub:"From registration to approval in under a second — without storing any biometric image.",
+    how_s1t:"One-time registration",how_s1p:"The palm is registered once. The vascular map is encrypted and linked to a token.",
+    how_s2t:"IR reading",how_s2p:"The infrared sensor captures veins in real time. No image is stored.",
+    how_s3t:"Instant match",how_s3p:"The algorithm compares the encrypted template.",
+    how_s4t:"Transaction approved",how_s4p:"Payment via Pix, Mastercard or Open Finance. Receipt straight to the app.",how_s4m:"Contact moment",
+    diff_eyebrow:"Differentiators",diff_h2:"Impossible to copy. Impossible to lose.",
+    diff_1t:"Internal and unchanging",diff_1p:"Veins sit beneath the skin. Impossible to photograph, copy or forge. It doesn't age like a fingerprint.",
+    diff_2t:"Sub-second",diff_2p:"Reads in under 800ms — faster than chip, tap-to-pay or QR. No physical contact.",
+    diff_3t:"FAR < 0.001%",diff_3p:"False acceptance rate 100× lower than facial recognition.",
+    diff_4t:"Network agnostic",diff_4p:"Integrates with Pix, Mastercard Click2Pay and Open Finance. 100% national IP.",
+    dev_eyebrow:"Devices",dev_h2:"The hardware that reads you.",dev_sub:"From the coupling module to the full POS — one line for every operation.",dev_tab3:"Integrations",
+    dev_badge1:"USB coupling",dev1_eye:"Reading module",dev1_p:"Compact, rugged and elegant. Couples via USB to any POS, tablet or PC and adds vascular biometric reading to what you already use.",
+    dev1_1:"Universal USB coupling — <b>Android 8+, Windows, Linux</b>",dev1_2:"Multi-field IR reading with <b>on-board anti-spoofing</b>",dev1_3:"<b>Open SDK + REST API</b> with standardized webhooks",dev1_4:"<b>Anatel certified</b> · IP52 · national supply chain",
+    dev_badge2:"Standalone POS",dev2_eye:"All-in-one terminal",dev2_p:"A standalone terminal that replaces the conventional POS. Accepts palm, Pix, card and QR — all in one device.",
+    dev2_1:"<b>Pix + Mastercard + Open Finance</b> — API for any network",dev2_2:"<b>E-ink + NFC + QR Code</b> — backward-compatible with card and Pix QR",dev2_3:"Cloud dashboard with <b>real-time transactions and reports</b>",dev2_4:"Replaces your current terminal without changing operations",
+    dev_badge3:"SDK & API",dev3_eye:"Couplings and integrations",dev3_h3:"Connects to what you already have",dev3_p:"Bring vascular biometrics into your own system — turnstiles, kiosks, POS and in-house apps — through our integration layer.",
+    dev3_1:"<b>REST API + webhooks</b> standardized for any stack",dev3_2:"Couples to <b>turnstiles, kiosks and access control</b>",dev3_3:"Server-side match in <b><800ms</b> · no image stored",dev3_4:"<b>Privacy-by-design</b> architecture — LGPD, PCI DSS and GDPR",
+    sec_eyebrow:"Use cases",sec_h2:"One gesture. Everything done.",sec_sub:"The same palm pays, accesses and identifies across every sector.",
+    sec1t:"Events & Stadiums",sec1p:"Entry and payment by palm. Zero queues, zero friction.",sec2t:"Retail & Pharmacies",sec2p:"Biometric checkout. Less chargeback and cart abandonment.",
+    sec3t:"Hospitality & Travel",sec3p:"Check-in, room access and in-house spending by palm.",sec4t:"Health & Hospitals",sec4p:"Biometric identification and billing. Less fraud.",
+    sec5t:"Benefits & Education",sec5p:"Canteens and access. Replaces the physical card.",sec6t:"Government & Services",sec6p:"Digital identity and payment for public services.",
+    sec7t:"Residential",sec7p:"Access control with no entry fraud.",sec8t:"Theme Parks",sec8p:"Access and attractions with no wristband or card.",
+    story_eyebrow:"Use scenes",story_h2:"One gesture for every routine.",story_sub:"From entry to checkout, the same palm handles payments, access and identification without a card, phone or password.",
+    story_c1:"<b>Premium retail.</b> Palm checkout for fast purchases, with no card hunt and no PIN entry at the counter.",
+    story_c2:"<b>Hospitality.</b> Integrated check-in, spending and access so guests move easily from reception onward.",
+    story_c3:"<b>Leisure without a wallet.</b> At the pool, bar or resort, the palm pays without wet phones, wristbands or tabs.",
+    story_c4:"<b>Cafes and convenience.</b> Recurring payment in seconds for people who want to enter, consume and keep moving.",
+    story_c5:"<b>Residential access.</b> Residents, visitors and vehicles pass through simple biometric identification that is hard to defraud.",
+    story_c6:"<b>Events and stadiums.</b> Palm-authorized entry helps reduce queues, duplicate tickets and access friction.",
+    story_k1:"Premium retail",story_t1:"The purchase ends before the line begins.",story_p1:"Palm checkout for fast purchases, with no card hunt, app opening or PIN entry at the counter.",story_chip1:"Payment approved",
+    story_k2:"Hospitality",story_t2:"From reception to room, no physical card.",story_p2:"Integrated check-in, spending and access so guests move easily throughout the stay.",story_chip2:"Access granted",
+    story_k3:"Wallet-free leisure",story_t3:"At the pool, your hand handles it too.",story_p3:"At the bar, resort or park, the palm pays without wet phones, wristbands, tabs or documents in a pocket.",story_chip3:"No phone in hand",
+    split_eyebrow:"Two paths",split_h2:"For your business. For you.",
+    split_b2b_tag:"For business",split_b2b_h:"Infrastructure you install once and scale forever.",split_b2b_p:"Cut fraud, queues and checkout friction. Boost conversion and stand out with Brazil's first certified vascular biometrics.",split_b2b_cta:"Book a demo",
+    split_b2c_tag:"For you",split_b2c_h:"You left without a card. Without a phone. You left with your hand.",split_b2c_p:"Your palm is your ticket, your card and your password — forever. Go anywhere. Be just you.",split_b2c_cta:"Discover it",
+    future_kicker:"You are the key",future_h:"<span>The future</span> opens doors for you.",
+    mkt_eyebrow:"Market context",mkt_h2:"The window for leadership is open now.",
+    mkt1:"of Brazilians were fraud victims in 2024",mkt2:"in losses from digital banking fraud in Brazil",mkt3:"global biometric payment market in 2025",mkt4:"of global consumers have already used biometrics in transactions",
+    ctaf_h:"You are your own token.",ctaf_p:"Start with a demo or talk to our team. The biometrics that set you free are available now.",ctaf_b1:"Talk to sales",ctaf_b2:"Discover it",
+    foot_desc:"Biometric identity platform that turns your palm into the most secure document there is.",
+    foot_prod:"Product",foot_comp:"Company",foot_about:"About",foot_founders:"Founders",foot_press:"Press",foot_contact:"Contact",foot_trust:"Trust",foot_privacy:"Privacy",foot_rights:"All rights reserved."
+  },
+  es:{
+    nav_tech:"Tecnología",nav_devices:"Dispositivos",nav_where:"Dónde usar",nav_company:"Empresa",cta_demo:"Agendar demo",
+    hero_eyebrow:"Biometría vascular · Homologada Anatel",hero_h1a:"Tú eres",hero_h1b:"tu propio token.",
+    hero_sub:"Paga, accede e identifícate solo con la palma de la mano. Sin tarjeta. Sin celular. Sin contraseña. Un registro. Para siempre.",
+    hero_cta1:"Hablar con ventas",hero_cta2:"Ver cómo funciona",trust1:"Homologado Anatel",hero_approve:"Aprobado en <800ms",
+    prob_eyebrow:"El problema",prob_h2:"El pago evolucionó. La identidad, aún no.",
+    prob_lead:"Los medios de pago dependen de objetos y secretos — que se pierden, se clonan o se olvidan. PalmVein elimina esa dependencia.",
+    prob_c1t:"Los objetos se pierden",prob_c1p:"La tarjeta y el celular pueden olvidarse, robarse o clonarse en cualquier momento.",
+    prob_c2t:"Los secretos se filtran",prob_c2p:"Las contraseñas y tokens se olvidan, se interceptan y se reutilizan en fraudes.",
+    prob_c3t:"El fraude crece",prob_c3p:"La mitad de los brasileños ya fue víctima de fraude. Las pérdidas superan los R$10 mil millones al año.",
+    how_eyebrow:"Cómo funciona",how_h2:"Una vez. Para siempre.",how_sub:"Del registro a la aprobación en menos de un segundo — sin almacenar ninguna imagen biométrica.",
+    how_s1t:"Registro único",how_s1p:"La palma se registra una sola vez. El mapa vascular se cifra y se vincula a un token.",
+    how_s2t:"Lectura IR",how_s2p:"El sensor infrarrojo captura las venas en tiempo real. No se almacena ninguna imagen.",
+    how_s3t:"Match instantáneo",how_s3p:"El algoritmo compara el template cifrado.",
+    how_s4t:"Transacción aprobada",how_s4p:"Pago vía Pix, Mastercard u Open Finance. Comprobante directo en la app.",how_s4m:"Momento de contacto",
+    diff_eyebrow:"Diferenciales",diff_h2:"Imposible de copiar. Imposible de perder.",
+    diff_1t:"Inalterable e interna",diff_1p:"Las venas están bajo la piel. Imposible fotografiar, copiar o falsificar. No envejece como la huella.",
+    diff_2t:"Sub-segundo",diff_2p:"Lectura en menos de 800ms — más rápido que chip, tap-to-pay o QR. Sin contacto físico.",
+    diff_3t:"FAR < 0,001%",diff_3p:"Tasa de falsa aceptación 100× menor que el reconocimiento facial.",
+    diff_4t:"Agnóstico de red",diff_4p:"Integra con Pix, Mastercard Click2Pay y Open Finance. IP 100% nacional.",
+    dev_eyebrow:"Dispositivos",dev_h2:"El hardware que te lee.",dev_sub:"Del módulo de acople al POS completo — una línea para cada operación.",dev_tab3:"Integraciones",
+    dev_badge1:"Acople USB",dev1_eye:"Módulo de lectura",dev1_p:"Compacto, robusto y elegante. Se acopla vía USB a cualquier POS, tablet o PC y añade lectura biométrica vascular a lo que ya usas.",
+    dev1_1:"Acople USB universal — <b>Android 8+, Windows, Linux</b>",dev1_2:"Lectura IR multicampo con <b>anti-spoofing integrado</b>",dev1_3:"<b>SDK abierto + API REST</b> con webhooks estandarizados",dev1_4:"<b>Homologado Anatel</b> · IP52 · cadena de suministro nacional",
+    dev_badge2:"POS standalone",dev2_eye:"Terminal todo en uno",dev2_p:"Terminal standalone que reemplaza al POS convencional. Acepta palma, Pix, tarjeta y QR — todo en un solo equipo.",
+    dev2_1:"<b>Pix + Mastercard + Open Finance</b> — API para cualquier red",dev2_2:"<b>E-ink + NFC + QR Code</b> — retrocompatible con tarjeta y Pix QR",dev2_3:"Panel en la nube con <b>transacciones e informes en tiempo real</b>",dev2_4:"Reemplaza tu terminal actual sin cambiar la operación",
+    dev_badge3:"SDK & API",dev3_eye:"Acoples e integraciones",dev3_h3:"Se conecta a lo que ya tienes",dev3_p:"Lleva la biometría vascular a tu propio sistema — torniquetes, tótems, PDV y apps propias — por nuestra capa de integración.",
+    dev3_1:"<b>API REST + webhooks</b> estandarizados para cualquier stack",dev3_2:"Acople a <b>torniquetes, tótems y control de acceso</b>",dev3_3:"Match en servidor en <b><800ms</b> · ninguna imagen almacenada",dev3_4:"Arquitectura <b>privacy-by-design</b> — LGPD, PCI DSS y GDPR",
+    sec_eyebrow:"Dónde usar",sec_h2:"Un gesto. Todo resuelto.",sec_sub:"La misma palma paga, accede e identifica en cualquier sector.",
+    sec1t:"Eventos & Estadios",sec1p:"Entrada y pago por palma. Cero fila, cero fricción.",sec2t:"Retail & Farmacias",sec2p:"Checkout biométrico. Menos contracargos y abandono.",
+    sec3t:"Hotelería & Turismo",sec3p:"Check-in, acceso a la habitación y consumos con la palma.",sec4t:"Salud & Hospitales",sec4p:"Identificación y cobro biométrico. Menos fraude.",
+    sec5t:"Beneficios & Educación",sec5p:"Comedores y acceso. Sustituye la tarjeta física.",sec6t:"Gobierno & Servicios",sec6p:"Identidad digital y pago de servicios públicos.",
+    sec7t:"Condominios",sec7p:"Control de acceso sin fraude de entrada.",sec8t:"Parques Temáticos",sec8p:"Acceso y atracciones sin pulsera ni tarjeta.",
+    story_eyebrow:"Escenas de uso",story_h2:"Un gesto para cualquier rutina.",story_sub:"Desde la entrada hasta el consumo, la misma palma resuelve pagos, accesos e identificación sin tarjeta, celular ni contraseña.",
+    story_c1:"<b>Retail premium.</b> Checkout con la palma para compras rápidas, sin buscar tarjeta ni escribir contraseña en el mostrador.",
+    story_c2:"<b>Hotelería.</b> Check-in, consumos y acceso integrados para que el huésped circule con facilidad desde la recepción.",
+    story_c3:"<b>Ocio sin billetera.</b> En la piscina, el bar o el resort, la palma paga sin celular mojado, pulsera ni comanda.",
+    story_c4:"<b>Cafeterías y conveniencia.</b> Pago recurrente en segundos para quien quiere entrar, consumir y seguir el día.",
+    story_c5:"<b>Condominios.</b> Residentes, visitantes y vehículos pasan por una identificación biométrica simple y difícil de defraudar.",
+    story_c6:"<b>Eventos y estadios.</b> Entrada autorizada por palma para reducir filas, entradas duplicadas y fricción en los accesos.",
+    story_k1:"Retail premium",story_t1:"La compra termina antes de que empiece la fila.",story_p1:"Checkout con la palma para compras rápidas, sin buscar tarjeta, abrir una app ni escribir contraseña en el mostrador.",story_chip1:"Pago aprobado",
+    story_k2:"Hotelería",story_t2:"De la recepción al cuarto, sin tarjeta física.",story_p2:"Check-in, consumos y acceso integrados para que el huésped circule con facilidad durante toda la estadía.",story_chip2:"Acceso liberado",
+    story_k3:"Ocio sin billetera",story_t3:"En la piscina, tu mano también resuelve.",story_p3:"En el bar, resort o parque, la palma paga sin celular mojado, pulsera, comanda ni documento en el bolsillo.",story_chip3:"Sin celular en mano",
+    split_eyebrow:"Dos caminos",split_h2:"Para tu negocio. Para ti.",
+    split_b2b_tag:"Para empresas",split_b2b_h:"Infraestructura que instalas una vez y escalas siempre.",split_b2b_p:"Reduce fraude, fila y fricción en el checkout. Aumenta la conversión y diferencia tu operación con la primera biometría vascular homologada de Brasil.",split_b2b_cta:"Agendar demostración",
+    split_b2c_tag:"Para ti",split_b2c_h:"Saliste sin tarjeta. Sin celular. Saliste con tu mano.",split_b2c_p:"Tu palma es tu entrada, tu tarjeta y tu contraseña — para siempre. Ve a cualquier lugar. Sé solo tú.",split_b2c_cta:"Quiero conocer",
+    future_kicker:"Tú eres la llave",future_h:"<span>El futuro</span> te abre las puertas.",
+    mkt_eyebrow:"Contexto de mercado",mkt_h2:"La ventana de liderazgo está abierta ahora.",
+    mkt1:"de los brasileños fueron víctimas de fraude en 2024",mkt2:"en pérdidas por fraudes bancarios digitales en Brasil",mkt3:"mercado global de pago biométrico en 2025",mkt4:"de los consumidores globales ya usaron biometría en transacciones",
+    ctaf_h:"Tú eres tu propio token.",ctaf_p:"Empieza con una demostración o habla con nuestro equipo. La biometría que libera ya está disponible.",ctaf_b1:"Hablar con ventas",ctaf_b2:"Quiero conocer",
+    foot_desc:"Plataforma de identidad biométrica que convierte la palma de la mano en el documento más seguro que existe.",
+    foot_prod:"Producto",foot_comp:"Empresa",foot_about:"Acerca de",foot_founders:"Fundadores",foot_press:"Prensa",foot_contact:"Contacto",foot_trust:"Confianza",foot_privacy:"Privacidad",foot_rights:"Todos los derechos reservados."
+  }
+};
+const LABEL={pt:"PT",en:"EN",es:"ES"};
+
+function setLang(lang){
+  const dict=I18N[lang]||I18N.pt;
+  document.querySelectorAll('[data-i]').forEach(el=>{
+    const k=el.getAttribute('data-i');
+    if(dict[k]!==undefined) el.innerHTML=dict[k];
+  });
+  document.getElementById('langLabel').textContent=LABEL[lang];
+  document.querySelectorAll('.lang-menu button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+  document.documentElement.lang = lang==='pt'?'pt-BR':lang;
+  window.__lang=lang;
+}
+/* auto-detect */
+(function(){
+  const nav=(navigator.language||'pt').slice(0,2).toLowerCase();
+  const initial=I18N[nav]?nav:'pt';
+  setLang(initial);
+})();
+
+/* lang menu */
+const langBtn=document.getElementById('langBtn'),langMenu=document.getElementById('langMenu');
+langBtn.addEventListener('click',e=>{e.stopPropagation();langMenu.classList.toggle('open')});
+document.querySelectorAll('.lang-menu button').forEach(b=>{
+  b.addEventListener('click',()=>{setLang(b.dataset.lang);langMenu.classList.remove('open')});
+});
+document.addEventListener('click',()=>langMenu.classList.remove('open'));
+
+/* device tabs */
+document.querySelectorAll('.dev-tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    const i=t.dataset.dev;
+    document.querySelectorAll('.dev-tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.dev-panel').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.querySelector('.dev-panel[data-panel="'+i+'"]').classList.add('active');
+  });
+});
+
+/* mobile menu */
+const burger=document.getElementById('burger'),mm=document.getElementById('mobileMenu');
+burger.addEventListener('click',()=>{
+  mm.classList.toggle('open');
+  burger.innerHTML=mm.classList.contains('open')?'<i class="ph ph-x"></i>':'<i class="ph ph-list"></i>';
+});
+mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  mm.classList.remove('open');burger.innerHTML='<i class="ph ph-list"></i>';
+}));
+
+/* subtle motion */
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!reduceMotion){
+  document.querySelectorAll('section, .prob-card, .step, .diff-card, .sector, .story-card, .stat, .split-card').forEach(el=>el.classList.add('reveal'));
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -40px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  const vslidePanels=[...document.querySelectorAll('.vslide-panel')];
+  const vslideDots=[...document.querySelectorAll('.vslide-dot')];
+  if(vslidePanels.length){
+    const setVslide=index=>{
+      vslidePanels.forEach((panel,i)=>panel.classList.toggle('active',i===index));
+      vslideDots.forEach((dot,i)=>dot.classList.toggle('active',i===index));
+    };
+    const vio=new IntersectionObserver(entries=>{
+      const visible=entries
+        .filter(entry=>entry.isIntersecting)
+        .sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+      if(visible) setVslide(Number(visible.target.dataset.vslide));
+    },{threshold:[.28,.45,.62],rootMargin:'-18% 0px -18% 0px'});
+    vslidePanels.forEach(panel=>vio.observe(panel));
+  }
+
+  document.querySelectorAll('.tilt').forEach(card=>{
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-.5;
+      const y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`perspective(900px) rotateX(${(-y*4).toFixed(2)}deg) rotateY(${(x*4).toFixed(2)}deg)`;
+    });
+    card.addEventListener('mouseleave',()=>{card.style.transform=''});
+  });
+
+  const parallaxBg=document.querySelector('.future-bg');
+  if(parallaxBg){
+    let ticking=false;
+    const updateParallax=()=>{
+      const r=parallaxBg.parentElement.getBoundingClientRect();
+      const progress=(r.top-window.innerHeight)/(window.innerHeight+r.height);
+      parallaxBg.style.setProperty('--parallax-y',`${(-progress*90).toFixed(1)}px`);
+      ticking=false;
+    };
+    window.addEventListener('scroll',()=>{
+      if(!ticking){
+        requestAnimationFrame(updateParallax);
+        ticking=true;
+      }
+    },{passive:true});
+    updateParallax();
+  }
+}
+
+/* story slider */
+const storyTrack=document.getElementById('storyTrack');
+if(storyTrack){
+  document.querySelectorAll('[data-story]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const card=storyTrack.querySelector('.story-card');
+      const gap=parseFloat(getComputedStyle(storyTrack).gap)||24;
+      const amount=(card?.getBoundingClientRect().width||560)+gap;
+      storyTrack.scrollBy({left:btn.dataset.story==='next'?amount:-amount,behavior:'smooth'});
+    });
+  });
+}
+
+/* founder lightbox */
+const founderOpen=document.getElementById('founderOpen');
+const founderModal=document.getElementById('founderModal');
+const founderClose=document.getElementById('founderClose');
+function setFounderModal(open){
+  if(!founderModal) return;
+  founderModal.classList.toggle('open',open);
+  document.body.style.overflow=open?'hidden':'';
+  if(open) founderClose?.focus();
+}
+founderOpen?.addEventListener('click',()=>setFounderModal(true));
+founderClose?.addEventListener('click',()=>setFounderModal(false));
+founderModal?.addEventListener('click',e=>{
+  if(e.target===founderModal) setFounderModal(false);
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&founderModal?.classList.contains('open')) setFounderModal(false);
+});
+</script>
+</body>
+</html>
