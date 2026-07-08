@@ -299,12 +299,14 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--palm);outline-offse
 .vslide-panel h2{font-size:clamp(38px,4.8vw,64px);line-height:.98;color:#fff;max-width:520px;margin-bottom:26px}
 .vslide-panel h2 span{color:var(--flow)}
 .vslide-panel p{font-size:clamp(18px,2vw,28px);line-height:1.25;color:rgba(255,255,255,.88);max-width:500px}
-.vslide-visual{position:sticky;top:90px;height:calc(100vh - 110px);display:flex;align-items:center;justify-content:center}
-.vslide-visual::before{
-  content:"";position:absolute;inset:12% -6% 2% 6%;border-radius:50%;
-  background:radial-gradient(circle,rgba(42,137,251,.34),transparent 62%);filter:blur(18px);
+.vslide-visual{
+  position:sticky;top:90px;height:calc(100vh - 110px);display:flex;align-items:center;justify-content:flex-end;
+  background:url("_imagens/dispositivo_roll.jpg") center right/cover no-repeat;overflow:hidden;
 }
-.vslide-visual img{position:relative;z-index:2;width:min(620px,90%);max-height:72vh;object-fit:contain;filter:drop-shadow(0 32px 90px rgba(42,137,251,.32))}
+.vslide-visual::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,#050914 0%,rgba(5,9,20,.72) 20%,rgba(5,9,20,.12) 58%,rgba(5,9,20,0) 100%);
+}
 .vslide-dots{position:absolute;right:18px;top:50%;transform:translateY(-50%);display:grid;gap:14px;z-index:4}
 .vslide-dot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.52);transition:height .25s,background .25s}
 .vslide-dot.active{height:64px;background:var(--palm)}
@@ -417,7 +419,7 @@ footer{background:var(--vein);border-top:1px solid var(--line);padding:60px 0 40
   .story-media{min-height:320px}
   .story-copy{padding:34px 30px}
   .vslide-grid{grid-template-columns:1fr;gap:22px}
-  .vslide-visual{position:relative;top:auto;height:auto;padding:48px 0 0;grid-row:1}
+  .vslide-visual{position:relative;top:auto;height:54vh;min-height:360px;grid-row:1;background-position:center right}
   .vslide-copy{padding:0 0 64px;gap:24px}
   .vslide-panel{min-height:0;opacity:1!important;transform:none!important;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);border-radius:18px;padding:26px}
   .vslide-dots{display:none}
@@ -757,7 +759,6 @@ footer{background:var(--vein);border-top:1px solid var(--line);padding:60px 0 40
       </article>
     </div>
     <div class="vslide-visual" aria-hidden="true">
-      <img src="_imagens/Dispositivos/Palmvein_01.png" alt="">
       <div class="vslide-dots">
         <span class="vslide-dot active"></span>
         <span class="vslide-dot"></span>
