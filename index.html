@@ -459,6 +459,27 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--palm);outline-offse
 
 /* ---------- FOOTER ---------- */
 footer{background:var(--vein);border-top:1px solid var(--line);padding:60px 0 40px}
+.footer-contact{
+  display:grid;grid-template-columns:.9fr 1.1fr;gap:34px;align-items:start;
+  background:var(--vein-pure);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:34px;margin-bottom:44px;box-shadow:0 18px 50px rgba(17,40,96,.06);
+}
+.footer-contact h3{font-size:clamp(24px,3vw,34px);color:var(--origin);margin-bottom:10px}
+.footer-contact p{font-size:15px;color:var(--muted);max-width:380px}
+.contact-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.contact-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:var(--r-full);padding:9px 13px;color:var(--origin);font-size:13px;font-weight:700;background:var(--vein)}
+.contact-pill i{color:var(--flow);font-size:18px}
+.contact-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.contact-form label{display:block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.contact-form input,.contact-form textarea{
+  width:100%;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--origin);
+  font-family:var(--font-body);font-size:14px;padding:12px 13px;outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--flow);box-shadow:0 0 0 3px rgba(42,137,251,.12)}
+.contact-form textarea{min-height:96px;resize:vertical}
+.contact-full{grid-column:1/-1}
+.contact-submit{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:2px}
+.contact-status{font-size:12px;color:var(--muted)}
 .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:44px}
 .foot-brand .brand{margin-bottom:18px}
 .pv-logo-foot{height:30px}
@@ -496,6 +517,7 @@ footer{background:var(--vein);border-top:1px solid var(--line);padding:60px 0 40
   .vslide-dots{display:none}
   .founder-dialog{grid-template-columns:1fr;gap:24px;padding:24px;max-height:88vh}
   .founder-photo img{max-height:420px;object-fit:cover}
+  .footer-contact{grid-template-columns:1fr;padding:26px}
   .prob-cards,.steps,.diff-grid,.sector-grid,.stats,.split-grid,.dev-panel.active,.foot-grid{grid-template-columns:1fr!important}
   .steps{gap:14px}
   .sector-grid{grid-template-columns:1fr 1fr!important}
@@ -536,6 +558,9 @@ footer{background:var(--vein);border-top:1px solid var(--line);padding:60px 0 40
   .founder-modal{padding:14px}
   .founder-bio h2{font-size:24px}
   .founder-bio p{font-size:14px;line-height:1.42}
+  .footer-contact{padding:22px}
+  .contact-form{grid-template-columns:1fr}
+  .contact-submit .btn{width:100%;justify-content:center}
   .sector-grid,.stats,.foot-grid{grid-template-columns:1fr!important}
   .dev-tabs{gap:8px}
   .dev-tab{padding:9px 16px;font-size:13px}
@@ -1049,6 +1074,43 @@ footer{background:var(--vein);border-top:1px solid var(--line);padding:60px 0 40
 <!-- ===== FOOTER ===== -->
 <footer>
   <div class="wrap">
+    <div class="footer-contact">
+      <div>
+        <div class="eyebrow">Contato</div>
+        <h3>Vamos falar sobre a sua operação?</h3>
+        <p>Deixe seu contato e o melhor canal de retorno. Assim que o número oficial estiver definido, conectamos este formulário ao WhatsApp.</p>
+        <div class="contact-links">
+          <span class="contact-pill"><i class="ph ph-device-mobile"></i> Celular em definição</span>
+          <span class="contact-pill"><i class="ph ph-whatsapp-logo"></i> WhatsApp em breve</span>
+        </div>
+      </div>
+      <form class="contact-form" id="footerContactForm">
+        <div>
+          <label for="contactName">Nome</label>
+          <input id="contactName" name="name" type="text" autocomplete="name" placeholder="Seu nome">
+        </div>
+        <div>
+          <label for="contactPhone">Celular / WhatsApp</label>
+          <input id="contactPhone" name="phone" type="tel" autocomplete="tel" placeholder="(00) 00000-0000">
+        </div>
+        <div>
+          <label for="contactEmail">E-mail</label>
+          <input id="contactEmail" name="email" type="email" autocomplete="email" placeholder="voce@empresa.com">
+        </div>
+        <div>
+          <label for="contactRegion">Região</label>
+          <input id="contactRegion" name="region" type="text" autocomplete="address-level1" placeholder="Cidade / país">
+        </div>
+        <div class="contact-full">
+          <label for="contactMessage">Mensagem</label>
+          <textarea id="contactMessage" name="message" placeholder="Conte brevemente o que você quer integrar ou testar"></textarea>
+        </div>
+        <div class="contact-submit">
+          <span class="contact-status" id="contactStatus">Sem envio automático por enquanto.</span>
+          <button class="btn btn-primary" type="submit">Preparar contato</button>
+        </div>
+      </form>
+    </div>
     <div class="foot-grid">
       <div class="foot-brand">
         <a href="#" class="brand" aria-label="PalmVein">
@@ -1432,6 +1494,14 @@ founderModal?.addEventListener('click',e=>{
 });
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'&&founderModal?.classList.contains('open')) setFounderModal(false);
+});
+
+/* footer contact placeholder */
+const footerContactForm=document.getElementById('footerContactForm');
+footerContactForm?.addEventListener('submit',e=>{
+  e.preventDefault();
+  const status=document.getElementById('contactStatus');
+  if(status) status.textContent='Contato preparado. Falta conectar o WhatsApp oficial.';
 });
 </script>
 </body>
