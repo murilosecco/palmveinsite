@@ -1161,11 +1161,17 @@ if(storyTrack){
       card.classList.toggle('is-past',index<storyIndex);
     });
   };
+  const scrollStoryTo=index=>{
+    const card=storyCards[index];
+    if(!card) return;
+    const left=card.offsetLeft-(storyTrack.clientWidth-card.offsetWidth)/2;
+    storyTrack.scrollTo({left,behavior:'smooth'});
+  };
   const goStory=(direction=1)=>{
     if(!storyCards.length) return;
     storyIndex=(storyIndex+direction+storyCards.length)%storyCards.length;
     updateStoryState();
-    storyCards[storyIndex].scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+    scrollStoryTo(storyIndex);
   };
   const startStoryAuto=()=>{
     if(reduceMotion||storyCards.length<2) return;
