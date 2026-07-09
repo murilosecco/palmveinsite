@@ -254,8 +254,9 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--palm);outline-offse
 .story-card{
   flex:0 0 min(86vw,1040px);scroll-snap-align:center;background:#fff;border:1px solid var(--line);
   border-radius:28px;display:grid;grid-template-columns:1.08fr .92fr;overflow:hidden;
-  box-shadow:0 24px 70px rgba(17,40,96,.11);min-height:430px;
+  box-shadow:0 24px 70px rgba(17,40,96,.11);min-height:430px;opacity:1;transition:opacity .45s ease,transform .45s ease;
 }
+.story-card.is-past{opacity:.3}
 .story-media{
   position:relative;min-height:430px;overflow:hidden;background:#101827;
 }
@@ -1153,10 +1154,17 @@ if(storyTrack){
   const storyCards=[...storyTrack.querySelectorAll('.story-card')];
   let storyIndex=0;
   let storyTimer;
+  let storyScrollTick=false;
   const storyDelay=5200;
+  const updateStoryState=()=>{
+    storyCards.forEach((card,index)=>{
+      card.classList.toggle('is-past',index<storyIndex);
+    });
+  };
   const goStory=(direction=1)=>{
     if(!storyCards.length) return;
     storyIndex=(storyIndex+direction+storyCards.length)%storyCards.length;
+    updateStoryState();
     storyCards[storyIndex].scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
   };
   const startStoryAuto=()=>{
@@ -1167,19 +1175,36 @@ if(storyTrack){
   const stopStoryAuto=()=>{if(storyTimer) clearInterval(storyTimer)};
   document.querySelectorAll('[data-story]').forEach(btn=>{
     btn.addEventListener('click',()=>{
-      const card=storyTrack.querySelector('.story-card');
-      const gap=parseFloat(getComputedStyle(storyTrack).gap)||24;
-      const amount=(card?.getBoundingClientRect().width||560)+gap;
       const direction=btn.dataset.story==='next'?1:-1;
-      storyIndex=(storyIndex+direction+storyCards.length)%storyCards.length;
-      storyTrack.scrollBy({left:direction*amount,behavior:'smooth'});
+      goStory(direction);
       startStoryAuto();
     });
   });
+  storyTrack.addEventListener('scroll',()=>{
+    if(storyScrollTick) return;
+    storyScrollTick=true;
+    requestAnimationFrame(()=>{
+      const trackCenter=storyTrack.getBoundingClientRect().left+storyTrack.clientWidth/2;
+      let closestIndex=storyIndex;
+      let closestDistance=Infinity;
+      storyCards.forEach((card,index)=>{
+        const rect=card.getBoundingClientRect();
+        const distance=Math.abs(rect.left+rect.width/2-trackCenter);
+        if(distance<closestDistance){
+          closestDistance=distance;
+          closestIndex=index;
+        }
+      });
+      storyIndex=closestIndex;
+      updateStoryState();
+      storyScrollTick=false;
+    });
+  },{passive:true});
   storyTrack.addEventListener('mouseenter',stopStoryAuto);
   storyTrack.addEventListener('mouseleave',startStoryAuto);
   storyTrack.addEventListener('focusin',stopStoryAuto);
   storyTrack.addEventListener('focusout',startStoryAuto);
+  updateStoryState();
   startStoryAuto();
 }
 
