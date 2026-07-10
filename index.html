@@ -202,17 +202,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--palm);outline-offse
 .vein-card{background:linear-gradient(155deg,var(--origin),var(--origin-deep));border-radius:var(--r-lg);padding:34px;min-height:520px;position:relative;overflow:hidden;box-shadow:0 28px 70px rgba(17,40,96,.22);color:#fff}
 .vein-card::before{content:"";position:absolute;inset:-10%;background:radial-gradient(circle at 58% 42%,rgba(42,137,251,.30),transparent 42%),radial-gradient(circle at 62% 76%,rgba(86,239,158,.18),transparent 34%);opacity:.95}
 .vein-card>*{position:relative;z-index:2}
-.palm-diagram{height:300px;display:flex;align-items:center;justify-content:center;margin-bottom:28px}
-.palm-shape{width:168px;height:230px;border-radius:78px 78px 54px 54px;background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.22);position:relative;box-shadow:inset 0 0 40px rgba(42,137,251,.15)}
-.palm-shape::before,.palm-shape::after{content:"";position:absolute;top:-52px;width:34px;height:104px;border-radius:20px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.20)}
-.palm-shape::before{left:42px;transform:rotate(-5deg)}
-.palm-shape::after{right:42px;transform:rotate(5deg)}
-.vein-line{position:absolute;left:50%;bottom:28px;width:3px;height:150px;background:var(--flow);border-radius:20px;box-shadow:0 0 18px rgba(42,137,251,.75)}
-.vein-line::before,.vein-line::after{content:"";position:absolute;width:3px;height:92px;background:var(--palm);border-radius:20px;transform-origin:bottom;bottom:42px;box-shadow:0 0 14px rgba(86,239,158,.65)}
-.vein-line::before{transform:rotate(-38deg);left:-2px}
-.vein-line::after{transform:rotate(38deg);right:-2px}
-.scan-frame{position:absolute;left:50%;top:88px;width:220px;height:176px;border:2px solid rgba(255,255,255,.78);border-radius:22px;transform:translateX(-50%);box-shadow:0 0 24px rgba(42,137,251,.28)}
-.scan-frame::after{content:"";position:absolute;left:12%;right:12%;top:50%;height:2px;background:linear-gradient(90deg,transparent,var(--palm),transparent);box-shadow:0 0 14px var(--palm)}
+.palm-diagram{height:300px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;border-radius:24px;overflow:hidden;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);box-shadow:inset 0 0 34px rgba(42,137,251,.18)}
+.palm-diagram img{width:100%;height:100%;object-fit:cover;object-position:center 36%;display:block;filter:saturate(1.06) contrast(1.04)}
 .vein-card h3{text-align:center;font-size:24px;margin-bottom:10px}
 .vein-card p{text-align:center;color:rgba(255,255,255,.68);max-width:420px;margin:0 auto}
 .process-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
@@ -550,7 +541,6 @@ footer{background:var(--vein);border-top:1px solid var(--line);padding:60px 0 40
   .story-copy p{font-size:15px}
   .vein-card{padding:28px 20px;min-height:440px}
   .palm-diagram{height:250px}
-  .palm-shape{transform:scale(.86)}
   .process-mini{grid-template-columns:1fr}
   .comparison-table{min-width:760px}
   .comparison-table th,.comparison-table td{padding:17px 16px;font-size:14px}
@@ -707,9 +697,8 @@ footer{background:var(--vein);border-top:1px solid var(--line);padding:60px 0 40
       </div>
     </div>
     <div class="vein-card">
-      <div class="palm-diagram" aria-hidden="true">
-        <div class="scan-frame"></div>
-        <div class="palm-shape"><div class="vein-line"></div></div>
+      <div class="palm-diagram">
+        <img src="_imagens/conceituais_palmvein_018.jpg" alt="Mapa conceitual da palma com pontos de reconhecimento biométrico vascular">
       </div>
       <h3>Reconhecimento por padrão vascular</h3>
       <p>O mapa interno da palma funciona como uma credencial biométrica única, estável e sempre com você.</p>
