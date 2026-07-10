@@ -311,24 +311,6 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--palm);outline-offse
 .story-copy p{font-size:17px;color:var(--muted);line-height:1.55;margin-bottom:28px}
 .story-chip{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:rgba(86,239,158,.16);color:#238e61;border:1px solid rgba(86,239,158,.36);padding:9px 14px;border-radius:var(--r-full);font-size:13px;font-weight:700}
 
-/* ---------- AUDIENCE SPLIT ---------- */
-.split-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:20px}
-.split-card{border-radius:var(--r-lg);padding:44px 38px;position:relative;overflow:hidden}
-.split-card::after{content:"";position:absolute;inset:auto 0 0 0;height:42%;opacity:.16;pointer-events:none;background-size:cover;background-position:center}
-.split-b2b{background:var(--vein-pure);border:1px solid var(--line)}
-.split-b2c{background:linear-gradient(155deg,var(--flow),#1a6fd4);color:#fff}
-.split-b2b::after{background-image:url("_imagens/Entrada_Escritorio.png")}
-.split-b2c::after{background-image:url("_imagens/Casal_Piscina.png");opacity:.20}
-.split-card>*{position:relative;z-index:2}
-.split-card .tag{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;display:block}
-.split-b2b .tag{color:var(--flow)}
-.split-b2c .tag{color:rgba(255,255,255,.8)}
-.split-card h3{font-size:28px;margin-bottom:14px}
-.split-b2b h3{color:var(--origin)}
-.split-card p{font-size:15px;margin-bottom:26px}
-.split-b2b p{color:var(--muted)}
-.split-b2c p{color:rgba(255,255,255,.85)}
-
 /* ---------- VERTICAL PRODUCT SLIDER ---------- */
 .vertical-slider{background:#050914;color:#fff;padding:0;position:relative;overflow:visible}
 .vslide-grid{display:grid;grid-template-columns:.86fr 1.14fr;gap:52px;align-items:start}
@@ -516,7 +498,7 @@ footer{background:var(--vein);border-top:1px solid var(--line);padding:60px 0 40
   .founder-dialog{grid-template-columns:1fr;gap:24px;padding:24px;max-height:88vh}
   .founder-photo img{max-height:420px;object-fit:cover}
   .footer-contact{grid-template-columns:1fr;padding:26px}
-  .prob-cards,.steps,.diff-grid,.sector-grid,.stats,.split-grid,.dev-panel.active,.foot-grid{grid-template-columns:1fr!important}
+  .prob-cards,.steps,.diff-grid,.sector-grid,.stats,.dev-panel.active,.foot-grid{grid-template-columns:1fr!important}
   .steps{gap:14px}
   .sector-grid{grid-template-columns:1fr 1fr!important}
   .stats{grid-template-columns:1fr 1fr!important}
@@ -902,30 +884,6 @@ footer{background:var(--vein);border-top:1px solid var(--line);padding:60px 0 40
   </div>
 </section>
 
-<!-- ===== AUDIENCE SPLIT ===== -->
-<section>
-  <div class="wrap">
-    <div class="how-head" style="text-align:center">
-      <div class="eyebrow" style="justify-content:center" data-i="split_eyebrow">Dois caminhos</div>
-      <h2 style="font-size:clamp(28px,4vw,44px);color:var(--origin)" data-i="split_h2">Para o seu negócio. Para você.</h2>
-    </div>
-    <div class="split-grid">
-      <div class="split-card split-b2b">
-        <span class="tag" data-i="split_b2b_tag">Para empresas</span>
-        <h3 data-i="split_b2b_h">Infraestrutura que você instala uma vez e escala sempre.</h3>
-        <p data-i="split_b2b_p">Reduza fraude, fila e atrito no checkout. Aumente conversão e diferencie sua operação com a primeira biometria vascular homologada do Brasil.</p>
-        <button class="btn btn-dark" data-i="split_b2b_cta">Agendar demonstração</button>
-      </div>
-      <div class="split-card split-b2c">
-        <span class="tag" data-i="split_b2c_tag">Para você</span>
-        <h3 data-i="split_b2c_h">Você saiu sem cartão. Sem celular. Saiu com a sua mão.</h3>
-        <p data-i="split_b2c_p">Sua palma é o seu ingresso, o seu cartão e a sua senha — para sempre. Vá a qualquer lugar. Seja apenas você.</p>
-        <button class="btn btn-light" data-i="split_b2c_cta">Quero conhecer</button>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ===== VERTICAL PRODUCT SLIDER ===== -->
 <section class="vertical-slider">
   <div class="wrap vslide-grid">
@@ -1188,9 +1146,6 @@ const I18N={
     story_k1:"Varejo premium",story_t1:"A compra termina antes da fila começar.",story_p1:"Checkout com a palma para compras rápidas, sem buscar cartão, abrir app ou digitar senha no balcão.",story_chip1:"Pagamento aprovado",
     story_k2:"Hotelaria",story_t2:"Da recepção ao quarto, sem cartão físico.",story_p2:"Check-in, consumo e acesso integrados para o hóspede circular com leveza durante toda a estadia.",story_chip2:"Acesso liberado",
     story_k3:"Lazer sem carteira",story_t3:"Na piscina, sua mão também resolve.",story_p3:"No bar, resort ou parque, a palma paga sem celular molhado, pulseira, comanda ou documento no bolso.",story_chip3:"Sem celular na mão",
-    split_eyebrow:"Dois caminhos",split_h2:"Para o seu negócio. Para você.",
-    split_b2b_tag:"Para empresas",split_b2b_h:"Infraestrutura que você instala uma vez e escala sempre.",split_b2b_p:"Reduza fraude, fila e atrito no checkout. Aumente conversão e diferencie sua operação com a primeira biometria vascular homologada do Brasil.",split_b2b_cta:"Agendar demonstração",
-    split_b2c_tag:"Para você",split_b2c_h:"Você saiu sem cartão. Sem celular. Saiu com a sua mão.",split_b2c_p:"Sua palma é o seu ingresso, o seu cartão e a sua senha — para sempre. Vá a qualquer lugar. Seja apenas você.",split_b2c_cta:"Quero conhecer",
     future_kicker:"Você é a chave",future_h:"<span>O futuro</span> abre as portas pra você.",
     mkt_eyebrow:"Contexto de mercado",mkt_h2:"A janela de liderança está aberta agora.",
     mkt1:"dos brasileiros foram vítimas de fraude em 2024",mkt2:"em perdas por fraudes bancárias digitais no Brasil",mkt3:"mercado global de pagamento biométrico em 2025",mkt4:"dos consumidores globais já usaram biometria em transações",
@@ -1240,9 +1195,6 @@ const I18N={
     story_k1:"Premium retail",story_t1:"The purchase ends before the line begins.",story_p1:"Palm checkout for fast purchases, with no card hunt, app opening or PIN entry at the counter.",story_chip1:"Payment approved",
     story_k2:"Hospitality",story_t2:"From reception to room, no physical card.",story_p2:"Integrated check-in, spending and access so guests move easily throughout the stay.",story_chip2:"Access granted",
     story_k3:"Wallet-free leisure",story_t3:"At the pool, your hand handles it too.",story_p3:"At the bar, resort or park, the palm pays without wet phones, wristbands, tabs or documents in a pocket.",story_chip3:"No phone in hand",
-    split_eyebrow:"Two paths",split_h2:"For your business. For you.",
-    split_b2b_tag:"For business",split_b2b_h:"Infrastructure you install once and scale forever.",split_b2b_p:"Cut fraud, queues and checkout friction. Boost conversion and stand out with Brazil's first certified vascular biometrics.",split_b2b_cta:"Book a demo",
-    split_b2c_tag:"For you",split_b2c_h:"You left without a card. Without a phone. You left with your hand.",split_b2c_p:"Your palm is your ticket, your card and your password — forever. Go anywhere. Be just you.",split_b2c_cta:"Discover it",
     future_kicker:"You are the key",future_h:"<span>The future</span> opens doors for you.",
     mkt_eyebrow:"Market context",mkt_h2:"The window for leadership is open now.",
     mkt1:"of Brazilians were fraud victims in 2024",mkt2:"in losses from digital banking fraud in Brazil",mkt3:"global biometric payment market in 2025",mkt4:"of global consumers have already used biometrics in transactions",
@@ -1292,9 +1244,6 @@ const I18N={
     story_k1:"Retail premium",story_t1:"La compra termina antes de que empiece la fila.",story_p1:"Checkout con la palma para compras rápidas, sin buscar tarjeta, abrir una app ni escribir contraseña en el mostrador.",story_chip1:"Pago aprobado",
     story_k2:"Hotelería",story_t2:"De la recepción al cuarto, sin tarjeta física.",story_p2:"Check-in, consumos y acceso integrados para que el huésped circule con facilidad durante toda la estadía.",story_chip2:"Acceso liberado",
     story_k3:"Ocio sin billetera",story_t3:"En la piscina, tu mano también resuelve.",story_p3:"En el bar, resort o parque, la palma paga sin celular mojado, pulsera, comanda ni documento en el bolsillo.",story_chip3:"Sin celular en mano",
-    split_eyebrow:"Dos caminos",split_h2:"Para tu negocio. Para ti.",
-    split_b2b_tag:"Para empresas",split_b2b_h:"Infraestructura que instalas una vez y escalas siempre.",split_b2b_p:"Reduce fraude, fila y fricción en el checkout. Aumenta la conversión y diferencia tu operación con la primera biometría vascular homologada de Brasil.",split_b2b_cta:"Agendar demostración",
-    split_b2c_tag:"Para ti",split_b2c_h:"Saliste sin tarjeta. Sin celular. Saliste con tu mano.",split_b2c_p:"Tu palma es tu entrada, tu tarjeta y tu contraseña — para siempre. Ve a cualquier lugar. Sé solo tú.",split_b2c_cta:"Quiero conocer",
     future_kicker:"Tú eres la llave",future_h:"<span>El futuro</span> te abre las puertas.",
     mkt_eyebrow:"Contexto de mercado",mkt_h2:"La ventana de liderazgo está abierta ahora.",
     mkt1:"de los brasileños fueron víctimas de fraude en 2024",mkt2:"en pérdidas por fraudes bancarios digitales en Brasil",mkt3:"mercado global de pago biométrico en 2025",mkt4:"de los consumidores globales ya usaron biometría en transacciones",
@@ -1355,7 +1304,7 @@ mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
 /* subtle motion */
 const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(!reduceMotion){
-  document.querySelectorAll('section, .prob-card, .step, .diff-card, .tech-list-item, .comparison-table-wrap, .comparison-note, .sector, .story-card, .stat, .split-card, .faq-item').forEach(el=>el.classList.add('reveal'));
+  document.querySelectorAll('section, .prob-card, .step, .diff-card, .tech-list-item, .comparison-table-wrap, .comparison-note, .sector, .story-card, .stat, .faq-item').forEach(el=>el.classList.add('reveal'));
   const io=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
       if(entry.isIntersecting){
