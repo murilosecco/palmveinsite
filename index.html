@@ -146,39 +146,43 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--palm);outline-offse
 .prob-card p{font-size:14px;color:#7a8494}
 
 /* ---------- HOW ---------- */
-.how{padding:0;background:var(--vein);position:relative}
-.how-scroll{height:430vh;position:relative}
-.how-sticky{position:sticky;top:0;min-height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:86px 0}
+.how{padding:96px 0 110px;background:var(--vein);position:relative;overflow:hidden}
 .how .eyebrow{justify-content:center}
 .how-head{text-align:center;max-width:680px;margin:0 auto 38px}
 .how h2{font-size:clamp(30px,4.5vw,46px);color:var(--origin);margin-bottom:16px}
-.process-wave{position:relative;height:min(48vw,470px);min-height:390px;margin-top:18px}
+.process-wave{position:relative;height:min(48vw,520px);min-height:430px;margin-top:18px}
 .wave-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.wave-base{fill:none;stroke:rgba(42,137,251,.18);stroke-width:4;stroke-linecap:round}
-.wave-progress{fill:none;stroke:var(--flow);stroke-width:5;stroke-linecap:round;stroke-dasharray:var(--wave-progress,0) 100;filter:drop-shadow(0 8px 12px rgba(42,137,251,.20));transition:stroke-dasharray .12s linear}
-.process-step{position:absolute;width:260px;opacity:0;transform:translateY(22px) scale(.86);transform-origin:center;transition:opacity .42s ease,transform .42s ease,filter .42s ease}
-.process-step.is-visible{opacity:.46;transform:translateY(0) scale(.9);filter:saturate(.86)}
-.process-step.is-active{opacity:1;transform:translateY(-8px) scale(1.13);filter:saturate(1.08);z-index:3}
-.process-step.is-past{opacity:.28;transform:translateY(6px) scale(.78);filter:saturate(.65)}
-.process-step.step-1{left:1%;top:38%}
-.process-step.step-2{left:28%;top:9%}
-.process-step.step-3{left:57%;top:47%}
-.process-step.step-4{right:0;top:36%}
-.process-icon{height:76px;margin-bottom:12px;color:var(--palm);display:flex;align-items:center}
-.process-icon i{font-size:68px}
-.process-icon.rgb{position:relative;width:96px;height:96px}
-.process-icon.rgb::before,.process-icon.rgb::after,.process-icon.rgb span{content:"";position:absolute;width:58px;height:58px;border-radius:50%;mix-blend-mode:multiply;opacity:.86}
-.process-icon.rgb::before{left:18px;top:0;background:#ff3424}
-.process-icon.rgb::after{left:0;top:44px;background:#26dc37}
-.process-icon.rgb span{left:42px;top:44px;background:#1678ff}
-.process-speed{font-family:var(--font-display);font-weight:700;font-size:clamp(64px,8vw,128px);line-height:.78;color:var(--palm);letter-spacing:-.07em;margin-bottom:12px}
+.wave-line{fill:none;stroke-linecap:round;stroke-width:5}
+.wave-main{stroke:url(#processGradient);filter:drop-shadow(0 10px 18px rgba(42,137,251,.23));animation:waveDrift 7s ease-in-out infinite}
+.wave-echo{fill:none;stroke-linecap:round;stroke-width:4;filter:blur(7px);animation:waveDrift 8.6s ease-in-out infinite reverse}
+.wave-echo.echo-a{stroke:rgba(42,137,251,.50);translate:0 44px}
+.wave-echo.echo-b{stroke:rgba(86,239,158,.25);translate:0 -38px;animation-duration:10s}
+.connector{fill:none;stroke:var(--step-color,var(--flow));stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;opacity:.92;stroke-dasharray:12 9;animation:connectorFlow 4.6s linear infinite}
+.connector-dot{fill:var(--step-color,var(--flow));filter:drop-shadow(0 8px 14px rgba(42,137,251,.22));animation:dotPulse 2.8s ease-in-out infinite}
+.dot-2{animation-delay:.45s}.dot-3{animation-delay:.9s}.dot-4{animation-delay:1.35s}
+.process-step{--step-color:var(--flow);position:absolute;width:min(24vw,300px);min-height:174px;background:rgba(255,255,255,.84);border:2px solid var(--step-color);border-radius:10px;padding:22px 24px;box-shadow:0 24px 62px rgba(17,40,96,.08);backdrop-filter:blur(10px);transform-origin:center;animation:processFloat 7s ease-in-out infinite;transition:transform .28s ease,box-shadow .28s ease,background .28s ease}
+.process-step:hover{transform:translateY(-12px) scale(1.045);background:#fff;box-shadow:0 34px 86px rgba(17,40,96,.16);z-index:5}
+.process-step.step-1{left:5%;top:13%;animation-delay:0s}
+.process-step.step-2{left:33%;top:54%;--step-color:#13abd1;animation-delay:.5s}
+.process-step.step-3{left:61%;top:21%;--step-color:#12c4cf;animation-delay:1s}
+.process-step.step-4{right:5%;top:58%;--step-color:var(--palm);animation-delay:1.5s}
+.process-icon{height:42px;margin-bottom:10px;color:var(--step-color);display:flex;align-items:center}
+.process-icon i{font-size:40px}
+.process-icon.rgb{position:relative;width:54px;height:54px;margin-bottom:4px}
+.process-icon.rgb::before,.process-icon.rgb::after,.process-icon.rgb span{content:"";position:absolute;width:34px;height:34px;border-radius:50%;mix-blend-mode:multiply;opacity:.88}
+.process-icon.rgb::before{left:10px;top:0;background:#ff3424}
+.process-icon.rgb::after{left:0;top:22px;background:#26dc37}
+.process-icon.rgb span{left:20px;top:22px;background:#1678ff}
+.process-speed{font-family:var(--font-display);font-weight:700;font-size:clamp(46px,5vw,74px);line-height:.78;color:var(--palm);letter-spacing:-.06em;margin-bottom:12px}
 .process-speed small{font-size:.24em;color:#b7bec9;letter-spacing:0;margin-left:4px}
-.process-number{width:56px;height:56px;border:3px solid var(--flow);border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--vein-pure);color:var(--flow);font-family:var(--font-display);font-size:23px;font-weight:700;margin-bottom:12px;box-shadow:0 14px 34px rgba(42,137,251,.14)}
-.process-step h4{font-size:clamp(21px,2.2vw,30px);color:var(--flow);margin-bottom:8px;text-transform:uppercase;letter-spacing:.01em}
-.process-step p{font-size:14px;line-height:1.25;color:var(--origin);font-weight:600}
-.process-step.step-4 .process-icon{justify-content:center;margin-left:18px}
-.process-step.step-4 .process-icon i{font-size:108px}
-.process-step.step-4{width:300px}
+.process-number{width:52px;height:52px;border:3px solid var(--step-color);border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--vein-pure);color:var(--step-color);font-family:var(--font-display);font-size:22px;font-weight:700;margin-bottom:14px;box-shadow:0 14px 34px rgba(42,137,251,.14)}
+.process-step h4{font-size:clamp(20px,2vw,28px);color:var(--step-color);margin-bottom:8px;text-transform:uppercase;letter-spacing:.01em}
+.process-step p{font-size:14px;line-height:1.22;color:var(--origin);font-weight:600}
+.process-step.step-4 .process-number{background:var(--palm);color:#fff;border-color:var(--palm)}
+@keyframes waveDrift{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-10px,0)}}
+@keyframes connectorFlow{to{stroke-dashoffset:-84}}
+@keyframes dotPulse{0%,100%{transform:scale(1);opacity:.86}50%{transform:scale(1.45);opacity:1}}
+@keyframes processFloat{0%,100%{translate:0 0}50%{translate:0 -9px}}
 
 /* ---------- DIFFERENTIALS ---------- */
 .diff{background:var(--vein-pure)}
@@ -506,12 +510,11 @@ footer{background:var(--vein);border-top:1px solid var(--line);padding:60px 0 40
   .founder-photo img{max-height:420px;object-fit:cover}
   .footer-contact{grid-template-columns:1fr;padding:26px}
   .prob-cards,.diff-grid,.sector-grid,.stats,.dev-panel.active,.foot-grid{grid-template-columns:1fr!important}
-  .how-scroll{height:auto}
-  .how-sticky{position:relative;min-height:0;padding:70px 0}
+  .how{padding:70px 0}
   .process-wave{height:auto;min-height:0;display:grid;gap:18px;margin-top:24px}
   .wave-svg{display:none}
-  .process-step,.process-step.step-1,.process-step.step-2,.process-step.step-3,.process-step.step-4{position:relative;left:auto;right:auto;top:auto;width:100%;opacity:1;transform:none!important;filter:none!important;background:var(--vein-pure);border:1px solid var(--line);border-radius:18px;padding:24px}
-  .process-step{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
+  .process-step,.process-step.step-1,.process-step.step-2,.process-step.step-3,.process-step.step-4{position:relative;left:auto;right:auto;top:auto;width:100%;min-height:0;opacity:1;transform:none!important;filter:none!important;background:var(--vein-pure);border:1px solid var(--line);border-radius:18px;padding:24px;animation:none}
+  .process-step{display:grid;grid-template-columns:auto 1fr;gap:14px 16px;align-items:center}
   .process-icon,.process-speed,.process-number{grid-row:1 / span 2;margin:0}
   .process-icon{height:auto}
   .process-icon i{font-size:46px}
@@ -678,45 +681,57 @@ footer{background:var(--vein);border-top:1px solid var(--line);padding:60px 0 40
 
 <!-- ===== HOW ===== -->
 <section class="how" id="how">
-  <div class="how-scroll" id="processScroll">
-    <div class="how-sticky">
-      <div class="wrap">
-        <div class="how-head">
-          <div class="eyebrow" data-i="how_eyebrow">Como funciona</div>
-          <h2 data-i="how_h2">Uma vez. Para sempre.</h2>
-          <p class="muted" data-i="how_sub">Do cadastro à aprovação em menos de um segundo — sem armazenar nenhuma imagem biométrica.</p>
-        </div>
-        <div class="process-wave" id="processWave" style="--wave-progress:0">
-          <svg class="wave-svg" viewBox="0 0 1600 430" preserveAspectRatio="none" aria-hidden="true">
-            <path class="wave-base" pathLength="100" d="M-80 242 C 180 168, 366 176, 555 144 S 873 224, 1060 284 S 1342 330, 1680 212"/>
-            <path class="wave-progress" pathLength="100" d="M-80 242 C 180 168, 366 176, 555 144 S 873 224, 1060 284 S 1342 330, 1680 212"/>
-          </svg>
-          <article class="process-step step-1" data-process-step="0">
-            <div class="process-icon"><i class="ph ph-hand-palm"></i></div>
-            <div class="process-number">1</div>
-            <h4 data-i="how_s1t">Cadastro único</h4>
-            <p data-i="how_s1p">A palma é registrada uma vez. O mapa vascular é criptografado e vinculado a um token de pagamento.</p>
-          </article>
-          <article class="process-step step-2" data-process-step="1">
-            <div class="process-icon rgb"><span></span></div>
-            <div class="process-number">2</div>
-            <h4 data-i="how_s2t">Mapa vascular</h4>
-            <p data-i="how_s2p">Sensor infravermelho captura as veias em tempo real. Nenhuma imagem armazenada — só o template biométrico.</p>
-          </article>
-          <article class="process-step step-3" data-process-step="2">
-            <div class="process-speed">0,8<small>s</small></div>
-            <div class="process-number">3</div>
-            <h4 data-i="how_s3t">Resposta imediata</h4>
-            <p data-i="how_s3p">Algoritmo compara o template criptografado em &lt;800ms. Falsa aceitação: &lt;0,001%.</p>
-          </article>
-          <article class="process-step step-4" data-process-step="3">
-            <div class="process-icon"><i class="ph ph-check-circle"></i></div>
-            <div class="process-number">4</div>
-            <h4 data-i="how_s4t">Pronto. É você.</h4>
-            <p data-i="how_s4p">Pague via Pix, Mastercard ou Open Finance — ou libere um acesso. Uma leitura, e está feito.</p>
-          </article>
-        </div>
-      </div>
+  <div class="wrap">
+    <div class="how-head">
+      <div class="eyebrow" data-i="how_eyebrow">Como funciona</div>
+      <h2 data-i="how_h2">Uma vez. Para sempre.</h2>
+      <p class="muted" data-i="how_sub">Do cadastro à aprovação em menos de um segundo — sem armazenar nenhuma imagem biométrica.</p>
+    </div>
+    <div class="process-wave" id="processWave">
+      <svg class="wave-svg" viewBox="0 0 1600 520" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="processGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#2a89fb"/>
+            <stop offset="52%" stop-color="#12c4cf"/>
+            <stop offset="100%" stop-color="#56ef9e"/>
+          </linearGradient>
+        </defs>
+        <path class="wave-echo echo-a" d="M-90 268 C 190 202, 390 188, 585 222 S 880 340, 1082 308 S 1345 214, 1690 198"/>
+        <path class="wave-echo echo-b" d="M-90 268 C 190 202, 390 188, 585 222 S 880 340, 1082 308 S 1345 214, 1690 198"/>
+        <path class="wave-line wave-main" d="M-90 268 C 190 202, 390 188, 585 222 S 880 340, 1082 308 S 1345 214, 1690 198"/>
+        <path class="connector connector-1" style="--step-color:#2a89fb" d="M82 258 L152 168 L404 168 L440 214"/>
+        <path class="connector connector-2" style="--step-color:#13abd1" d="M502 220 L584 318 L584 386"/>
+        <path class="connector connector-3" style="--step-color:#12c4cf" d="M914 316 L1014 168 L1014 238"/>
+        <path class="connector connector-4" style="--step-color:#56ef9e" d="M1375 218 L1430 330 L1430 392"/>
+        <circle class="connector-dot dot-1" style="--step-color:#2a89fb" cx="82" cy="258" r="8"/>
+        <circle class="connector-dot dot-1" style="--step-color:#2a89fb" cx="440" cy="214" r="8"/>
+        <circle class="connector-dot dot-2" style="--step-color:#13abd1" cx="502" cy="220" r="8"/>
+        <circle class="connector-dot dot-2" style="--step-color:#13abd1" cx="584" cy="386" r="8"/>
+        <circle class="connector-dot dot-3" style="--step-color:#12c4cf" cx="914" cy="316" r="8"/>
+        <circle class="connector-dot dot-3" style="--step-color:#12c4cf" cx="1014" cy="238" r="8"/>
+        <circle class="connector-dot dot-4" style="--step-color:#56ef9e" cx="1375" cy="218" r="8"/>
+        <circle class="connector-dot dot-4" style="--step-color:#56ef9e" cx="1430" cy="392" r="8"/>
+      </svg>
+      <article class="process-step step-1" data-process-step="0">
+        <div class="process-number">1</div>
+        <h4 data-i="how_s1t">Cadastro único</h4>
+        <p data-i="how_s1p">Registre a palma uma vez. Pronto para sempre.</p>
+      </article>
+      <article class="process-step step-2" data-process-step="1">
+        <div class="process-number">2</div>
+        <h4 data-i="how_s2t">Mapa vascular</h4>
+        <p data-i="how_s2p">Encoste a mão. O sensor lê suas veias.</p>
+      </article>
+      <article class="process-step step-3" data-process-step="2">
+        <div class="process-number">3</div>
+        <h4 data-i="how_s3t">Resposta imediata</h4>
+        <p data-i="how_s3p">Reconhecido em 0,8s, com precisão quase absoluta.</p>
+      </article>
+      <article class="process-step step-4" data-process-step="3">
+        <div class="process-number">4</div>
+        <h4 data-i="how_s4t">Pronto. É você.</h4>
+        <p data-i="how_s4p">Pagamento ou acesso liberado. Sem cartão, sem senha.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -1180,10 +1195,10 @@ const I18N={
     prob_c2t:"Segredos vazam",prob_c2p:"Senhas e tokens são esquecidos, interceptados e reaproveitados em fraudes.",
     prob_c3t:"A fraude cresce",prob_c3p:"Metade dos brasileiros já foi vítima de fraude. O prejuízo passa de R$10 bilhões por ano.",
     how_eyebrow:"Como funciona",how_h2:"Uma vez. Para sempre.",how_sub:"Do cadastro à aprovação em menos de um segundo — sem armazenar nenhuma imagem biométrica.",
-    how_s1t:"Cadastro único",how_s1p:"A palma é registrada uma vez. O mapa vascular é criptografado e vinculado a um token de pagamento.",
-    how_s2t:"Mapa vascular",how_s2p:"Sensor infravermelho captura as veias em tempo real. Nenhuma imagem armazenada — só o template biométrico.",
-    how_s3t:"Resposta imediata",how_s3p:"Algoritmo compara o template criptografado em <800ms. Falsa aceitação: <0,001%.",
-    how_s4t:"Pronto. É você.",how_s4p:"Pague via Pix, Mastercard ou Open Finance — ou libere um acesso. Uma leitura, e está feito.",how_s4m:"Momento de contato",
+    how_s1t:"Cadastro único",how_s1p:"Registre a palma uma vez. Pronto para sempre.",
+    how_s2t:"Mapa vascular",how_s2p:"Encoste a mão. O sensor lê suas veias.",
+    how_s3t:"Resposta imediata",how_s3p:"Reconhecido em 0,8s, com precisão quase absoluta.",
+    how_s4t:"Pronto. É você.",how_s4p:"Pagamento ou acesso liberado. Sem cartão, sem senha.",how_s4m:"Momento de contato",
     diff_eyebrow:"Diferenciais",diff_h2:"Impossível de copiar. Impossível de perder.",
     diff_1t:"Inalterável e interna",diff_1p:"As veias ficam abaixo da pele. Impossível fotografar, copiar ou falsificar. Não envelhece como a digital.",
     diff_2t:"Sub-segundo",diff_2p:"Leitura em menos de 800ms — mais rápido que chip, tap-to-pay ou QR Code. Sem contato físico.",
@@ -1229,10 +1244,10 @@ const I18N={
     prob_c2t:"Secrets leak",prob_c2p:"Passwords and tokens get forgotten, intercepted and reused in fraud.",
     prob_c3t:"Fraud is growing",prob_c3p:"Half of Brazilians have already been fraud victims. Losses top R$10 billion a year.",
     how_eyebrow:"How it works",how_h2:"Once. Forever.",how_sub:"From registration to approval in under a second — without storing any biometric image.",
-    how_s1t:"One-time registration",how_s1p:"The palm is registered once. The vascular map is encrypted and linked to a payment token.",
-    how_s2t:"Vascular map",how_s2p:"The infrared sensor captures veins in real time. No image is stored — only the biometric template.",
-    how_s3t:"Immediate response",how_s3p:"The algorithm compares the encrypted template in <800ms. False acceptance: <0.001%.",
-    how_s4t:"Done. It is you.",how_s4p:"Pay via Pix, Mastercard or Open Finance — or unlock access. One reading, and it is done.",how_s4m:"Contact moment",
+    how_s1t:"One-time registration",how_s1p:"Register the palm once. Ready forever.",
+    how_s2t:"Vascular map",how_s2p:"Place your hand. The sensor reads your veins.",
+    how_s3t:"Immediate response",how_s3p:"Recognized in 0.8s, with near-absolute precision.",
+    how_s4t:"Done. It is you.",how_s4p:"Payment or access approved. No card, no password.",how_s4m:"Contact moment",
     diff_eyebrow:"Differentiators",diff_h2:"Impossible to copy. Impossible to lose.",
     diff_1t:"Internal and unchanging",diff_1p:"Veins sit beneath the skin. Impossible to photograph, copy or forge. It doesn't age like a fingerprint.",
     diff_2t:"Sub-second",diff_2p:"Reads in under 800ms — faster than chip, tap-to-pay or QR. No physical contact.",
@@ -1278,10 +1293,10 @@ const I18N={
     prob_c2t:"Los secretos se filtran",prob_c2p:"Las contraseñas y tokens se olvidan, se interceptan y se reutilizan en fraudes.",
     prob_c3t:"El fraude crece",prob_c3p:"La mitad de los brasileños ya fue víctima de fraude. Las pérdidas superan los R$10 mil millones al año.",
     how_eyebrow:"Cómo funciona",how_h2:"Una vez. Para siempre.",how_sub:"Del registro a la aprobación en menos de un segundo — sin almacenar ninguna imagen biométrica.",
-    how_s1t:"Registro único",how_s1p:"La palma se registra una sola vez. El mapa vascular se cifra y se vincula a un token de pago.",
-    how_s2t:"Mapa vascular",how_s2p:"El sensor infrarrojo captura las venas en tiempo real. No se almacena imagen — solo el template biométrico.",
-    how_s3t:"Respuesta inmediata",how_s3p:"El algoritmo compara el template cifrado en <800ms. Falsa aceptación: <0,001%.",
-    how_s4t:"Listo. Eres tú.",how_s4p:"Paga vía Pix, Mastercard u Open Finance — o libera un acceso. Una lectura, y está hecho.",how_s4m:"Momento de contacto",
+    how_s1t:"Registro único",how_s1p:"Registra la palma una vez. Lista para siempre.",
+    how_s2t:"Mapa vascular",how_s2p:"Acerca la mano. El sensor lee tus venas.",
+    how_s3t:"Respuesta inmediata",how_s3p:"Reconocido en 0,8s, con precisión casi absoluta.",
+    how_s4t:"Listo. Eres tú.",how_s4p:"Pago o acceso liberado. Sin tarjeta, sin contraseña.",how_s4m:"Momento de contacto",
     diff_eyebrow:"Diferenciales",diff_h2:"Imposible de copiar. Imposible de perder.",
     diff_1t:"Inalterable e interna",diff_1p:"Las venas están bajo la piel. Imposible fotografiar, copiar o falsificar. No envejece como la huella.",
     diff_2t:"Sub-segundo",diff_2p:"Lectura en menos de 800ms — más rápido que chip, tap-to-pay o QR. Sin contacto físico.",
@@ -1424,49 +1439,6 @@ mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
 
 /* subtle motion */
 const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const processScroll=document.getElementById('processScroll');
-const processWave=document.getElementById('processWave');
-const processSteps=[...document.querySelectorAll('[data-process-step]')];
-const setProcessProgress=progress=>{
-  if(!processWave||!processSteps.length) return;
-  const clamped=Math.max(0,Math.min(1,progress));
-  processWave.style.setProperty('--wave-progress',`${Math.min(100,clamped*116).toFixed(1)}`);
-  const thresholds=[.18,.39,.61,.82];
-  let active=-1;
-  thresholds.forEach((threshold,index)=>{
-    if(clamped>=threshold) active=index;
-  });
-  processSteps.forEach((step,index)=>{
-    step.classList.toggle('is-visible',clamped>=thresholds[index]-.08);
-    step.classList.toggle('is-active',index===active);
-    step.classList.toggle('is-past',index<active);
-  });
-};
-const updateProcessScroll=()=>{
-  if(!processScroll) return;
-  const rect=processScroll.getBoundingClientRect();
-  const distance=processScroll.offsetHeight-window.innerHeight;
-  const progress=distance>0 ? -rect.top/distance : 1;
-  setProcessProgress(progress);
-};
-if(processScroll){
-  if(reduceMotion){
-    setProcessProgress(1);
-    processSteps.forEach(step=>step.classList.add('is-visible'));
-  }else{
-    let processTick=false;
-    window.addEventListener('scroll',()=>{
-      if(processTick) return;
-      processTick=true;
-      requestAnimationFrame(()=>{
-        updateProcessScroll();
-        processTick=false;
-      });
-    },{passive:true});
-    window.addEventListener('resize',updateProcessScroll);
-    updateProcessScroll();
-  }
-}
 if(!reduceMotion){
   document.querySelectorAll('section, .prob-card, .diff-card, .tech-list-item, .comparison-table-wrap, .comparison-note, .sector, .story-card, .stat, .faq-item').forEach(el=>el.classList.add('reveal'));
   const io=new IntersectionObserver(entries=>{
