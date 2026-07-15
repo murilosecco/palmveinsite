@@ -146,11 +146,12 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--palm);outline-offse
 .prob-card p{font-size:14px;color:#7a8494}
 
 /* ---------- HOW ---------- */
-.how{padding:96px 0 110px;background:var(--vein);position:relative;overflow:hidden}
+.how{min-height:100vh;padding:74px 0 92px;background:var(--vein);position:relative;overflow:hidden;display:flex;align-items:center}
+.how .wrap{width:100%;max-width:min(1780px,100%);padding:0 clamp(20px,3vw,58px)}
 .how .eyebrow{justify-content:center}
-.how-head{text-align:center;max-width:680px;margin:0 auto 38px}
+.how-head{text-align:center;max-width:680px;margin:0 auto 24px}
 .how h2{font-size:clamp(30px,4.5vw,46px);color:var(--origin);margin-bottom:16px}
-.process-wave{position:relative;height:min(48vw,520px);min-height:430px;margin-top:18px}
+.process-wave{position:relative;height:clamp(610px,62vh,760px);min-height:610px;margin-top:0}
 .wave-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .wave-line{fill:none;stroke-linecap:round;stroke-width:5}
 .wave-main{stroke:url(#processGradient);filter:drop-shadow(0 10px 18px rgba(42,137,251,.23));animation:waveDrift 7s ease-in-out infinite}
@@ -158,14 +159,14 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--palm);outline-offse
 .wave-echo.echo-a{stroke:rgba(42,137,251,.50);translate:0 44px}
 .wave-echo.echo-b{stroke:rgba(86,239,158,.25);translate:0 -38px;animation-duration:10s}
 .connector{fill:none;stroke:var(--step-color,var(--flow));stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;opacity:.92;stroke-dasharray:12 9;animation:connectorFlow 4.6s linear infinite}
-.connector-dot{fill:var(--step-color,var(--flow));filter:drop-shadow(0 8px 14px rgba(42,137,251,.22));animation:dotPulse 2.8s ease-in-out infinite}
+.connector-dot{fill:var(--step-color,var(--flow));filter:drop-shadow(0 8px 14px rgba(42,137,251,.22));animation:dotPulse 2.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
 .dot-2{animation-delay:.45s}.dot-3{animation-delay:.9s}.dot-4{animation-delay:1.35s}
 .process-step{--step-color:var(--flow);position:absolute;width:min(24vw,300px);min-height:174px;background:rgba(255,255,255,.84);border:2px solid var(--step-color);border-radius:10px;padding:22px 24px;box-shadow:0 24px 62px rgba(17,40,96,.08);backdrop-filter:blur(10px);transform-origin:center;animation:processFloat 7s ease-in-out infinite;transition:transform .28s ease,box-shadow .28s ease,background .28s ease}
 .process-step:hover{transform:translateY(-12px) scale(1.045);background:#fff;box-shadow:0 34px 86px rgba(17,40,96,.16);z-index:5}
-.process-step.step-1{left:5%;top:13%;animation-delay:0s}
-.process-step.step-2{left:33%;top:54%;--step-color:#13abd1;animation-delay:.5s}
-.process-step.step-3{left:61%;top:21%;--step-color:#12c4cf;animation-delay:1s}
-.process-step.step-4{right:5%;top:58%;--step-color:var(--palm);animation-delay:1.5s}
+.process-step.step-1{left:4%;top:8%;animation-delay:0s}
+.process-step.step-2{left:38%;top:60%;--step-color:#13abd1;animation-delay:.5s}
+.process-step.step-3{left:64%;top:12%;--step-color:#12c4cf;animation-delay:1s}
+.process-step.step-4{right:4%;top:61%;--step-color:var(--palm);animation-delay:1.5s}
 .process-icon{height:42px;margin-bottom:10px;color:var(--step-color);display:flex;align-items:center}
 .process-icon i{font-size:40px}
 .process-icon.rgb{position:relative;width:54px;height:54px;margin-bottom:4px}
@@ -688,7 +689,7 @@ footer{background:var(--vein);border-top:1px solid var(--line);padding:60px 0 40
       <p class="muted" data-i="how_sub">Do cadastro à aprovação em menos de um segundo — sem armazenar nenhuma imagem biométrica.</p>
     </div>
     <div class="process-wave" id="processWave">
-      <svg class="wave-svg" viewBox="0 0 1600 520" preserveAspectRatio="none" aria-hidden="true">
+      <svg class="wave-svg" viewBox="0 0 1800 640" preserveAspectRatio="none" aria-hidden="true">
         <defs>
           <linearGradient id="processGradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stop-color="#2a89fb"/>
@@ -696,21 +697,21 @@ footer{background:var(--vein);border-top:1px solid var(--line);padding:60px 0 40
             <stop offset="100%" stop-color="#56ef9e"/>
           </linearGradient>
         </defs>
-        <path class="wave-echo echo-a" d="M-90 268 C 190 202, 390 188, 585 222 S 880 340, 1082 308 S 1345 214, 1690 198"/>
-        <path class="wave-echo echo-b" d="M-90 268 C 190 202, 390 188, 585 222 S 880 340, 1082 308 S 1345 214, 1690 198"/>
-        <path class="wave-line wave-main" d="M-90 268 C 190 202, 390 188, 585 222 S 880 340, 1082 308 S 1345 214, 1690 198"/>
-        <path class="connector connector-1" style="--step-color:#2a89fb" d="M82 258 L152 168 L404 168 L440 214"/>
-        <path class="connector connector-2" style="--step-color:#13abd1" d="M502 220 L584 318 L584 386"/>
-        <path class="connector connector-3" style="--step-color:#12c4cf" d="M914 316 L1014 168 L1014 238"/>
-        <path class="connector connector-4" style="--step-color:#56ef9e" d="M1375 218 L1430 330 L1430 392"/>
-        <circle class="connector-dot dot-1" style="--step-color:#2a89fb" cx="82" cy="258" r="8"/>
-        <circle class="connector-dot dot-1" style="--step-color:#2a89fb" cx="440" cy="214" r="8"/>
-        <circle class="connector-dot dot-2" style="--step-color:#13abd1" cx="502" cy="220" r="8"/>
-        <circle class="connector-dot dot-2" style="--step-color:#13abd1" cx="584" cy="386" r="8"/>
-        <circle class="connector-dot dot-3" style="--step-color:#12c4cf" cx="914" cy="316" r="8"/>
-        <circle class="connector-dot dot-3" style="--step-color:#12c4cf" cx="1014" cy="238" r="8"/>
-        <circle class="connector-dot dot-4" style="--step-color:#56ef9e" cx="1375" cy="218" r="8"/>
-        <circle class="connector-dot dot-4" style="--step-color:#56ef9e" cx="1430" cy="392" r="8"/>
+        <path class="wave-echo echo-a" d="M-160 380 C 190 292, 455 250, 710 318 S 1062 456, 1320 336 S 1590 238, 1960 276"/>
+        <path class="wave-echo echo-b" d="M-160 380 C 190 292, 455 250, 710 318 S 1062 456, 1320 336 S 1590 238, 1960 276"/>
+        <path class="wave-line wave-main" d="M-160 380 C 190 292, 455 250, 710 318 S 1062 456, 1320 336 S 1590 238, 1960 276"/>
+        <path class="connector connector-1" style="--step-color:#2a89fb" d="M92 350 L190 250 L360 250 L420 242"/>
+        <path class="connector connector-2" style="--step-color:#13abd1" d="M660 307 L748 380"/>
+        <path class="connector connector-3" style="--step-color:#12c4cf" d="M1192 386 L1306 269"/>
+        <path class="connector connector-4" style="--step-color:#56ef9e" d="M1582 250 L1502 390"/>
+        <circle class="connector-dot dot-1" style="--step-color:#2a89fb" cx="92" cy="350" r="8"/>
+        <circle class="connector-dot dot-1" style="--step-color:#2a89fb" cx="420" cy="242" r="8"/>
+        <circle class="connector-dot dot-2" style="--step-color:#13abd1" cx="660" cy="307" r="8"/>
+        <circle class="connector-dot dot-2" style="--step-color:#13abd1" cx="748" cy="380" r="8"/>
+        <circle class="connector-dot dot-3" style="--step-color:#12c4cf" cx="1192" cy="386" r="8"/>
+        <circle class="connector-dot dot-3" style="--step-color:#12c4cf" cx="1306" cy="269" r="8"/>
+        <circle class="connector-dot dot-4" style="--step-color:#56ef9e" cx="1582" cy="250" r="8"/>
+        <circle class="connector-dot dot-4" style="--step-color:#56ef9e" cx="1502" cy="390" r="8"/>
       </svg>
       <article class="process-step step-1" data-process-step="0">
         <div class="process-number">1</div>
