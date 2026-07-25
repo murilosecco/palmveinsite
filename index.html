@@ -263,10 +263,8 @@ main section{scroll-margin-top:96px}
   background:radial-gradient(circle,rgba(210,235,255,.9) 0%,rgba(43,138,252,.55) 34%,rgba(43,138,252,0) 68%);
   filter:blur(6px);
 }
-.bf-strip span{
-  position:relative;font-family:var(--font-display);font-weight:700;font-style:italic;
-  font-size:clamp(28px,4.4vw,44px);letter-spacing:-.01em;
-  background:linear-gradient(90deg,#84eca6,#56ef9f);-webkit-background-clip:text;background-clip:text;color:transparent;
+.bf-strip img{
+  position:relative;height:clamp(28px,4.4vw,44px);width:auto;
   filter:drop-shadow(0 4px 10px rgba(0,0,0,.35));
 }
 
@@ -351,7 +349,7 @@ main section{scroll-margin-top:96px}
   font-size:13px;letter-spacing:.06em;text-transform:uppercase;
 }
 .cenas-foot{display:flex;align-items:center;justify-content:space-between;padding:0 var(--gutter);margin-top:6px}
-.cenas-wordmark{font-family:var(--font-display);font-weight:700;font-style:italic;font-size:18px;color:var(--highlight)}
+.cenas-wordmark{height:16px;width:auto;display:block}
 .cenas-dots{display:flex;align-items:center;gap:12px}
 .cena-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.5);transition:all .3s;padding:0;border:none;cursor:pointer}
 .cena-dot.active{width:52px;background:var(--highlight);border-radius:6px}
@@ -362,8 +360,7 @@ main section{scroll-margin-top:96px}
 }
 
 /* ============ BENEFICIOS E MARCAS ============ */
-.beneficios{position:relative;background:#d9d9d9 url('_links/cenas/beneficios-bg.png') right/cover no-repeat;padding:80px 0 0}
-.beneficios::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,.68)}
+.beneficios{position:relative;background:var(--cinza-claro);padding:80px 0 0}
 .beneficios .wrap{position:relative;max-width:1240px}
 .ben-badge{
   display:block;margin:0 auto 28px;width:max-content;background:var(--flow);color:#fffdf9;
@@ -385,7 +382,7 @@ main section{scroll-margin-top:96px}
 .ben-card h4{font-family:var(--font-display);font-weight:400;font-size:22px;color:var(--flow);margin-bottom:4px}
 .ben-card p{font-size:14px;color:var(--origin);line-height:1.4}
 
-.marcas{padding:96px 0 88px;text-align:center}
+.marcas{background:var(--cinza-claro);padding:96px 0 88px;text-align:center}
 .marcas h2{
   font-family:var(--font-display);font-weight:700;color:var(--origin);
   font-size:clamp(26px,4vw,44px);max-width:760px;margin:0 auto 56px;line-height:1.15;
@@ -478,8 +475,8 @@ main section{scroll-margin-top:96px}
   font-size:14px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
   padding:8px 22px;border-radius:var(--r-full);
 }
-.prod-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:0}
-.prod-bg img{max-width:36%;filter:drop-shadow(0 30px 60px rgba(43,138,252,.35))}
+.prod-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-start;padding-left:5vw;pointer-events:none;z-index:0}
+.prod-bg img{width:40vw;max-width:560px;min-width:280px;filter:drop-shadow(0 30px 60px rgba(43,138,252,.35))}
 .prod-stage-wrap{position:relative;z-index:1;width:100%;max-width:1240px;margin:0 auto;padding:0 var(--gutter);display:flex;justify-content:flex-end}
 .prod-stage{position:relative;width:100%;max-width:509px;height:360px}
 .prod-panel{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;will-change:opacity,transform}
@@ -504,7 +501,8 @@ main section{scroll-margin-top:96px}
 .prod-dot.active{width:32px;border-radius:5px;background:var(--flow)}
 
 @media (max-width:900px){
-  .prod-bg img{max-width:56%;opacity:.5}
+  .prod-bg{justify-content:center;padding-left:0}
+  .prod-bg img{width:72vw;opacity:.16;filter:blur(1px)}
   .prod-stage-wrap{justify-content:center}
   .prod-stage{max-width:100%;text-align:center}
   .prod-tag{margin-left:auto;margin-right:auto}
@@ -797,7 +795,10 @@ form.contact-form{max-width:751px;margin:0 auto}
 .footer-col a:hover{color:var(--vein)}
 .footer-bottom{
   border-top:6px solid;border-image:linear-gradient(90deg,var(--flow),var(--highlight)) 1;
-  background:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  background:#fff;
+}
+.footer-bottom-inner{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
   padding:22px var(--gutter);max-width:1440px;margin:0 auto;
 }
 .footer-bottom p{font-size:14px;color:var(--cinza-texto2)}
@@ -896,7 +897,7 @@ form.contact-form{max-width:751px;margin:0 auto}
     </div>
   </section>
 
-  <section class="bf-strip" data-reveal><span>biometric future</span></section>
+  <section class="bf-strip" data-reveal><img src="_links/Biometric Future.svg" alt="Biometric Future"></section>
 
   <section class="palmscan" id="palm-scan">
     <div class="wrap">
@@ -982,7 +983,7 @@ form.contact-form{max-width:751px;margin:0 auto}
         </article>
       </div>
       <div class="cenas-foot">
-        <span class="cenas-wordmark">biometric future</span>
+        <img class="cenas-wordmark" src="_links/Biometric Future.svg" alt="Biometric Future">
         <div class="cenas-dots" id="cenasDots"></div>
       </div>
     </div>
@@ -1453,8 +1454,10 @@ form.contact-form{max-width:751px;margin:0 auto}
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 PalmVein. Todos os direitos reservados.</p>
-    <p class="tag">Você é o seu token.</p>
+    <div class="footer-bottom-inner">
+      <p>© 2026 PalmVein. Todos os direitos reservados.</p>
+      <p class="tag">Você é o seu token.</p>
+    </div>
   </div>
 </footer>
 
